@@ -2,25 +2,33 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.effect.Shadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Library_management_system.controller.MainFromController">
    <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#2fa4ff" height="500.0" stroke="BLACK" strokeType="INSIDE" width="700.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="470.0" layoutX="15.0" layoutY="15.0" opacity="0.86" stroke="BLACK" strokeType="INSIDE" width="670.0">
+         <effect>
+            <Shadow color="#f5f4f4" height="130.29" radius="54.082499999999996" width="88.04" />
+         </effect>
+      </Rectangle>
       <ImageView fx:id="imgAdmin" fitHeight="107.0" fitWidth="110.0" layoutX="164.0" layoutY="250.0" onMouseClicked="#imgAdminOnAction" onMouseEntered="#playMouseEnterAnimation" onMouseExited="#playMouseExiteAnimation" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assest/admin.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="ingUser" fitHeight="107.0" fitWidth="110.0" layoutX="430.0" layoutY="250.0" onMouseClicked="#imgUserOnAction" onMouseEntered="#playMouseEnterAnimation" onMouseExited="#playMouseExiteAnimation" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgUser" fitHeight="107.0" fitWidth="110.0" layoutX="430.0" layoutY="250.0" onMouseClicked="#imgUserOnAction" onMouseEntered="#playMouseEnterAnimation" onMouseExited="#playMouseExiteAnimation" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assest/user.png" />
          </image>
       </ImageView>
       <Separator layoutX="50.0" layoutY="190.0" prefHeight="5.0" prefWidth="600.0" />
-      <Label alignment="CENTER" layoutX="62.0" layoutY="464.0" prefHeight="16.0" prefWidth="577.0" text="Copyright 2024 GDSE - All Rights Reserved. MIT License.">
+      <Label alignment="CENTER" layoutX="62.0" layoutY="464.0" prefHeight="16.0" prefWidth="577.0" text="Copyright 2024 GDSE - All Rights Reserved. MIT License." textFill="#6b6767">
          <font>
             <Font size="10.0" />
          </font>
@@ -35,12 +43,15 @@
             <Font name="System Bold" size="22.0" />
          </font>
       </Label>
-      <Label fx:id="lblAbout" layoutX="125.0" layoutY="132.0" text="Please select your choice from the following to continue the process." />
-      <Label fx:id="lblAdmin" layoutX="196.0" layoutY="382.0" opacity="0.75">
+      <Label fx:id="lblAbout" alignment="CENTER" layoutX="20.0" layoutY="134.0" prefHeight="18.0" prefWidth="660.0" text="Please select your choice from the following to continue the process." textAlignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label fx:id="lblAdmin" layoutX="196.0" layoutY="382.0" textFill="#1b1b1b">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Label>
-      <Label fx:id="lblUser" layoutX="461.0" layoutY="382.0" opacity="0.75">
+      <Label fx:id="lblUser" layoutX="461.0" layoutY="382.0">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
