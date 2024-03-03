@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Library_management_system.controller.UserSignInFromController">
+<AnchorPane fx:id="root" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Library_management_system.controller.UserSignInFromController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="700.0" stroke="BLACK" strokeType="INSIDE" width="500.0" />
       <TextField fx:id="textUserName" layoutX="580.0" layoutY="250.0" prefHeight="26.0" prefWidth="360.0" promptText="User name" />
@@ -55,7 +55,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Button layoutX="190.0" layoutY="512.0" mnemonicParsing="false" onAction="#signUpBtnOnAction" onMouseEntered="#signUpBtnMouseEnterOnAction" onMouseExited="#signUpBtnMouseExitOnAction" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #1e90ff; -fx-border-color: white;" text="Sign Up" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="btnSignUp" layoutX="190.0" layoutY="512.0" mnemonicParsing="false" onAction="#signUpBtnOnAction" onMouseEntered="#signUpBtnMouseEnterOnAction" onMouseExited="#signUpBtnMouseExitOnAction" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #1e90ff; -fx-border-color: white;" text="Sign Up" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -63,7 +63,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <ToggleButton fx:id="btnToggleOnAction" layoutX="938.0" layoutY="350.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="42.0" style="-fx-background-color: C7C8CC;">
+      <ToggleButton fx:id="btnToggle" layoutX="938.0" layoutY="350.0" mnemonicParsing="false" onAction="#btnToggleOnAction" prefHeight="26.0" prefWidth="42.0" style="-fx-background-color: C7C8CC;">
          <graphic>
             <ImageView fitHeight="15.0" fitWidth="18.0">
                <image>
