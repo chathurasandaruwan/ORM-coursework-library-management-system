@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Library_management_system.controller.UserSignInFromController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="700.0" layoutX="500.0" stroke="BLACK" strokeType="INSIDE" width="500.0" />
+      <TextField layoutX="60.0" layoutY="250.0" prefHeight="26.0" prefWidth="360.0" promptText="User Name" />
+      <ImageView fitHeight="100.0" fitWidth="150.0" layoutX="700.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assest/icons8-library-64.png" />
+         </image>
+      </ImageView>
+      <PasswordField layoutX="60.0" layoutY="450.0" prefHeight="26.0" prefWidth="360.0" promptText="Password" />
+      <Label layoutX="60.0" layoutY="150.0" text="Sign Up">
+         <font>
+            <Font name="System Bold" size="32.0" />
+         </font>
+      </Label>
+      <Button layoutX="300.0" layoutY="540.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #1e90ff;" text="Sign In" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Label layoutX="653.0" layoutY="210.0" text="WELCOME ">
+         <font>
+            <Font name="System Bold" size="32.0" />
+         </font>
+      </Label>
+      <Label layoutX="624.0" layoutY="382.0" text="Have An Account ?" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="570.0" layoutY="430.0" text="Logging to account click on">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="781.0" layoutY="430.0" text="&quot;Sign In&quot; button. ">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button layoutX="690.0" layoutY="512.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" style="-fx-background-color: #1e90ff; -fx-border-color: white;" text="Sign In" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <TextField layoutX="60.0" layoutY="350.0" prefHeight="26.0" prefWidth="360.0" promptText="Email" />
+   </children>
+</AnchorPane>
