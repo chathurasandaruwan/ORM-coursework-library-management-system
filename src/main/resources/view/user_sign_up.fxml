@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="root" prefHeight="700.0" prefWidth="1000.0" styleClass="mainFxmlClass" stylesheets="@../style/main-form.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Library_management_system.controller.userSignUpFromController">
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="700.0" prefWidth="1000.0" styleClass="mainFxmlClass" stylesheets="@../style/sign_up_form.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Library_management_system.controller.userSignUpFromController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="700.0" layoutX="500.0" stroke="BLACK" strokeType="INSIDE" width="500.0" />
       <TextField fx:id="textName" layoutX="60.0" layoutY="250.0" prefHeight="26.0" prefWidth="360.0" promptText="User Name" />
