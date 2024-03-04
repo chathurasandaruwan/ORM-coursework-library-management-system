@@ -69,17 +69,15 @@ public class UserSignInFromController {
         if (btnToggle.isSelected()) {
             textPassword.setPromptText(textPassword.getText());
             textPassword.setText("");
-//            btnToggle.setStyle("-fx-background-image: url(\"assest/image/Hide_Password.png"/); -fx-background-size: cover; -fx-background-repeat: no-repeat;");
             String imagePath = "/assest/image/Show_password.png";
-            btnToggle.setStyle("-fx-background-image: url('" + imagePath + "'); -fx-background-size: 50% 50%; -fx-background-position: center; -fx-background-repeat: no-repeat;");
+            btnToggle.setStyle("-fx-background-image: url('" + imagePath + "'); -fx-background-size: 60% 60%; -fx-background-position: center; -fx-background-repeat: no-repeat;");
         } else {
             textPassword.setText(textPassword.getPromptText());
             textPassword.setPromptText("");
             String imagePath = "/assest/image/Hide_Password.png";
-            btnToggle.setStyle("-fx-background-image: url('" + imagePath + "'); -fx-background-size: 50% 50%; -fx-background-position: center; -fx-background-repeat: no-repeat;");
+            btnToggle.setStyle("-fx-background-image: url('" + imagePath + "'); -fx-background-size: 60% 60%; -fx-background-position: center; -fx-background-repeat: no-repeat;");
         }
-    }
-    @FXML
+    }@FXML
     void imgHomeNavi(MouseEvent event) throws IOException {
         AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/main_form.fxml"));
         Scene scene = new Scene(anchorPane);

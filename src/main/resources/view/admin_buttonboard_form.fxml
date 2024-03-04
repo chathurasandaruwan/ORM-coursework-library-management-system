@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: #1e90ff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Library_management_system.controller.AdminButtonBoardFromController">
+   <children>
+      <AnchorPane layoutX="20.0" layoutY="120.0" prefHeight="560.0" prefWidth="960.0" style="-fx-background-color: white;" />
+      <AnchorPane layoutX="20.0" layoutY="20.0" prefHeight="100.0" prefWidth="960.0" style="-fx-background-color: #48d7e7;">
+         <children>
+            <JFXButton layoutX="104.0" layoutY="30.0" prefHeight="60.0" prefWidth="300.0" style="-fx-background-color: #1e90ff;" text="Books         ">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" translateX="-30.0">
+                     <image>
+                        <Image url="@../assest/image/icons8-books-48.png" />
+                     </image>
+                  </ImageView>
+               </graphic></JFXButton>
+            <JFXButton layoutX="449.0" layoutY="30.0" prefHeight="60.0" prefWidth="300.0" style="-fx-background-color: #1e90ff;" text="Branch">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" translateX="-30.0">
+                     <image>
+                        <Image url="@../assest/image/branches.png" />
+                     </image>
+                  </ImageView>
+               </graphic></JFXButton>
+            <Label layoutX="780.0" layoutY="46.0" text="Member Count :" />
+            <Label layoutX="897.0" layoutY="34.0" text="19">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+            <Pane layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: black; -fx-background-radius: 10;">
+               <children>
+                  <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#imgHomeNavi" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assest/image/icons8-home-64.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
