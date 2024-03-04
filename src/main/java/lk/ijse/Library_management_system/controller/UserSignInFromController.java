@@ -35,7 +35,7 @@ public class UserSignInFromController {
     @FXML
     private Button btnSignUp;
     public void initialize(){
-        String imagePath = "/assest/image/Show_password.png";
+        String imagePath = "/assest/image/Hide_Password.png";
         btnToggle.setStyle("-fx-background-image: url('" + imagePath + "'); -fx-background-size: 50% 50%; -fx-background-position: center; -fx-background-repeat: no-repeat;");
     }
 
@@ -70,12 +70,12 @@ public class UserSignInFromController {
             textPassword.setPromptText(textPassword.getText());
             textPassword.setText("");
 //            btnToggle.setStyle("-fx-background-image: url(\"assest/image/Hide_Password.png"/); -fx-background-size: cover; -fx-background-repeat: no-repeat;");
-            String imagePath = "/assest/image/Hide_Password.png";
+            String imagePath = "/assest/image/Show_password.png";
             btnToggle.setStyle("-fx-background-image: url('" + imagePath + "'); -fx-background-size: 50% 50%; -fx-background-position: center; -fx-background-repeat: no-repeat;");
         } else {
             textPassword.setText(textPassword.getPromptText());
             textPassword.setPromptText("");
-            String imagePath = "/assest/image/Show_password.png";
+            String imagePath = "/assest/image/Hide_Password.png";
             btnToggle.setStyle("-fx-background-image: url('" + imagePath + "'); -fx-background-size: 50% 50%; -fx-background-position: center; -fx-background-repeat: no-repeat;");
         }
     }
