@@ -9,9 +9,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import javax.swing.text.html.ImageView;
 import java.io.IOException;
 
 public class UserSignInFromController {
+    @FXML
+    private ImageView showPasswordImg;
     @FXML
     private AnchorPane root;
 
@@ -31,6 +34,10 @@ public class UserSignInFromController {
     private Label lablePasswordWarning;
     @FXML
     private Button btnSignUp;
+    public void initialize(){
+        String imagePath = "/assest/image/Show_password.png";
+        btnToggle.setStyle("-fx-background-image: url('" + imagePath + "'); -fx-background-size: 50% 50%; -fx-background-position: center; -fx-background-repeat: no-repeat;");
+    }
 
     @FXML
     void signInBtnOnAction(ActionEvent event) {
@@ -52,7 +59,6 @@ public class UserSignInFromController {
     void signUpBtnOnAction(ActionEvent event) throws IOException {
         AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/user_sign_up.fxml"));
         Scene scene = new Scene(anchorPane);
-
         Stage stage = (Stage) root.getScene().getWindow();
         stage.setScene(scene);
         stage.setTitle("User Sign_up page");
@@ -60,7 +66,18 @@ public class UserSignInFromController {
     }
     @FXML
     void btnToggleOnAction(ActionEvent event) {
-        System.out.println("Show");
+        if (btnToggle.isSelected()) {
+            textPassword.setPromptText(textPassword.getText());
+            textPassword.setText("");
+//            btnToggle.setStyle("-fx-background-image: url(\"assest/image/Hide_Password.png"/); -fx-background-size: cover; -fx-background-repeat: no-repeat;");
+            String imagePath = "/assest/image/Hide_Password.png";
+            btnToggle.setStyle("-fx-background-image: url('" + imagePath + "'); -fx-background-size: 50% 50%; -fx-background-position: center; -fx-background-repeat: no-repeat;");
+        } else {
+            textPassword.setText(textPassword.getPromptText());
+            textPassword.setPromptText("");
+            String imagePath = "/assest/image/Show_password.png";
+            btnToggle.setStyle("-fx-background-image: url('" + imagePath + "'); -fx-background-size: 50% 50%; -fx-background-position: center; -fx-background-repeat: no-repeat;");
+        }
     }
 
 }

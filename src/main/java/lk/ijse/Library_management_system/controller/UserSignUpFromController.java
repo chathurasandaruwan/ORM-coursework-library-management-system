@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class userSignUpFromController {
+public class UserSignUpFromController {
     @FXML
     private AnchorPane root;
 

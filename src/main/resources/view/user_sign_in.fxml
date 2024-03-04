@@ -13,13 +13,13 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="root" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../style/sign_in_form.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Library_management_system.controller.UserSignInFromController">
+<AnchorPane id="AnchorPane" fx:id="root" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../assest/style/sign_in_form.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Library_management_system.controller.UserSignInFromController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="700.0" stroke="BLACK" strokeType="INSIDE" width="500.0" />
       <TextField fx:id="textUserName" layoutX="580.0" layoutY="250.0" prefHeight="26.0" prefWidth="360.0" promptText="User name" />
       <ImageView fitHeight="100.0" fitWidth="150.0" layoutX="200.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../assest/icons8-library-64.png" />
+            <Image url="@../assest/image/icons8-library-64.png" />
          </image>
       </ImageView>
       <PasswordField fx:id="textPassword" layoutX="580.0" layoutY="350.0" prefHeight="26.0" prefWidth="360.0" promptText="Password" />
@@ -64,13 +64,6 @@
          </cursor>
       </Button>
       <ToggleButton fx:id="btnToggle" layoutX="938.0" layoutY="350.0" mnemonicParsing="false" onAction="#btnToggleOnAction" prefHeight="26.0" prefWidth="42.0" style="-fx-background-color: C7C8CC;">
-         <graphic>
-            <ImageView fitHeight="15.0" fitWidth="18.0">
-               <image>
-                  <Image url="@../assest/Show_password.png" />
-               </image>
-            </ImageView>
-         </graphic>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -79,7 +72,7 @@
          <children>
             <ImageView fitHeight="26.0" fitWidth="42.0" layoutX="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../assest/user-small.png" />
+                  <Image url="@../assest/image/user-small.png" />
                </image>
             </ImageView>
          </children>
