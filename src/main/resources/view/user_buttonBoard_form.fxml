@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -40,6 +41,9 @@
                      </image>
                   </ImageView>
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
             <JFXButton fx:id="btnBookHis" layoutX="445.0" layoutY="30.0" onAction="#btnBookHisOnAction" prefHeight="60.0" prefWidth="300.0" style="-fx-background-color: #1e90ff;" text="Book History">
                <font>
@@ -52,6 +56,9 @@
                      </image>
                   </ImageView>
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </JFXButton>
             <Pane layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: black; -fx-background-radius: 10;">
                <children>
@@ -59,6 +66,9 @@
                      <image>
                         <Image url="@../assest/image/icons8-home-64.png" />
                      </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ImageView>
                </children>
             </Pane>
@@ -68,6 +78,9 @@
                      <image>
                         <Image url="@../assest/image/editProfileLogo.png" />
                      </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ImageView>
                </children>
             </Pane>

@@ -14,8 +14,6 @@ import java.io.IOException;
 
 public class UserSignInFromController {
     @FXML
-    private ImageView showPasswordImg;
-    @FXML
     private AnchorPane root;
 
     @FXML
@@ -40,8 +38,13 @@ public class UserSignInFromController {
     }
 
     @FXML
-    void signInBtnOnAction(ActionEvent event) {
-        System.out.println("Sign In");
+    void signInBtnOnAction(ActionEvent event) throws IOException {
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/user_buttonBoard_form.fxml"));
+        Scene scene = new Scene(anchorPane);
+        Stage stage = (Stage) root.getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("User page");
+        stage.centerOnScreen();
     }
 
     @FXML
