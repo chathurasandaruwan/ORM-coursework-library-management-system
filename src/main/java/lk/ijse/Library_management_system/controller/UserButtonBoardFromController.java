@@ -3,11 +3,10 @@ package lk.ijse.Library_management_system.controller;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
-public class AdminButtonBoardFromController {
+public class UserButtonBoardFromController {
 
     @FXML
     private AnchorPane rootMain;
@@ -16,21 +15,23 @@ public class AdminButtonBoardFromController {
     private AnchorPane root;
 
     @FXML
-    private JFXButton btnBooks;
+    private JFXButton btnBook;
 
     @FXML
-    private JFXButton btnBranch;
+    private JFXButton btnBookHis;
 
     @FXML
-    private Label lblMemberCount;
-
-    @FXML
-    void btnBooksOnAction(ActionEvent event) {
+    void btnBookHisOnAction(ActionEvent event) {
 
     }
 
     @FXML
-    void btnBranchOnAction(ActionEvent event) {
+    void btnBookOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void imgEditProfilOnAction(MouseEvent event) {
 
     }
 
