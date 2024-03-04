@@ -3,8 +3,13 @@ package lk.ijse.Library_management_system.controller;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class UserButtonBoardFromController {
 
@@ -36,8 +41,14 @@ public class UserButtonBoardFromController {
     }
 
     @FXML
-    void imgHomeNavi(MouseEvent event) {
+    void imgHomeNavi(MouseEvent event) throws IOException {
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/main_form.fxml"));
+        Scene scene = new Scene(anchorPane);
 
+        Stage stage = (Stage) rootMain.getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("User Sign_in page");
+        stage.centerOnScreen();
     }
 
 }
