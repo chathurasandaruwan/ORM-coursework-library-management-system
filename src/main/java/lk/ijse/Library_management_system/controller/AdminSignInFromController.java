@@ -69,8 +69,13 @@ public class AdminSignInFromController {
     }
 
     @FXML
-    void signInBtnOnAction(ActionEvent event) {
-
+    void signInBtnOnAction(ActionEvent event) throws IOException {
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/admin_buttonboard_form.fxml"));
+        Scene scene = new Scene(anchorPane);
+        Stage stage = (Stage) root.getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("Admin page");
+        stage.centerOnScreen();
     }
 
     @FXML
