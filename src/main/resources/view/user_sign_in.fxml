@@ -16,7 +16,7 @@
 <AnchorPane fx:id="root" prefHeight="700.0" prefWidth="1000.0" stylesheets="@../assest/style/sign_in_form.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Library_management_system.controller.UserSignInFromController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="700.0" stroke="BLACK" strokeType="INSIDE" width="500.0" />
-      <TextField id="textUserName" fx:id="textUserName" layoutX="580.0" layoutY="250.0" prefHeight="26.0" prefWidth="360.0" promptText="User name" stylesheets="@../assest/style/sign_in_form.css" />
+      <TextField id="textUserName" fx:id="textUserName" layoutX="580.0" layoutY="250.0" prefHeight="26.0" prefWidth="360.0" promptText="User name" />
       <ImageView fitHeight="100.0" fitWidth="150.0" layoutX="200.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assest/image/icons8-library-64.png" />
@@ -87,5 +87,10 @@
             <Font size="12.0" />
          </font>
       </Label>
+      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="27.0" layoutY="25.0" onMouseClicked="#imgHomeNavi" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assest/image/icons8-home-64.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

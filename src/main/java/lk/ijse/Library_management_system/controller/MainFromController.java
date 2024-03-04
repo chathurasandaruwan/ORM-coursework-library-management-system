@@ -34,8 +34,14 @@ public class MainFromController {
     private Label lblUser;
 
     @FXML
-    void imgAdminOnAction(MouseEvent event) {
-        System.out.println("Admin");
+    void imgAdminOnAction(MouseEvent event) throws IOException {
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/admin_sign_in.fxml"));
+        Scene scene = new Scene(anchorPane);
+
+        Stage stage = (Stage) root.getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("User Admin_in page");
+        stage.centerOnScreen();
     }
 
     @FXML

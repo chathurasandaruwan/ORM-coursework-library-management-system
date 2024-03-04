@@ -79,5 +79,15 @@ public class UserSignInFromController {
             btnToggle.setStyle("-fx-background-image: url('" + imagePath + "'); -fx-background-size: 50% 50%; -fx-background-position: center; -fx-background-repeat: no-repeat;");
         }
     }
+    @FXML
+    void imgHomeNavi(MouseEvent event) throws IOException {
+        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/main_form.fxml"));
+        Scene scene = new Scene(anchorPane);
+
+        Stage stage = (Stage) root.getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("User Sign_in page");
+        stage.centerOnScreen();
+    }
 
 }
