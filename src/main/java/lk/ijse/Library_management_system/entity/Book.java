@@ -2,27 +2,29 @@ package lk.ijse.Library_management_system.entity;
 
 import jakarta.persistence.*;
 
+import java.time.Year;
+
 @Entity
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String title;
-    private int publicationYear;
-    private int price;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "Author_id")
-    private Author author;
+    private String author;
+    private int AvailabilityStatus;
+    private String branch;
+    private Year generation;
 
-    public Book() {
-    }
-
-    public Book(int id, String title, int publicationYear, int price, Author author) {
+    public Book(int id, String title, String author, int availabilityStatus, String branch, Year generation) {
         this.id = id;
         this.title = title;
-        this.publicationYear = publicationYear;
-        this.price = price;
         this.author = author;
+        AvailabilityStatus = availabilityStatus;
+        this.branch = branch;
+        this.generation = generation;
+    }
+
+    public Book() {
     }
 
     public int getId() {
@@ -41,38 +43,35 @@ public class Book {
         this.title = title;
     }
 
-    public int getPublicationYear() {
-        return publicationYear;
-    }
-
-    public void setPublicationYear(int publicationYear) {
-        this.publicationYear = publicationYear;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public Author getAuthor() {
+    public String getAuthor() {
         return author;
     }
 
-    public void setAuthor(Author author) {
+    public void setAuthor(String author) {
         this.author = author;
     }
 
-    @Override
-    public String toString() {
-        return "Book{" +
-                "id='" + id + '\'' +
-                ", title='" + title + '\'' +
-                ", publicationYear=" + publicationYear +
-                ", price=" + price +
-                ", author=" + author +
-                '}';
+    public int getAvailabilityStatus() {
+        return AvailabilityStatus;
+    }
+
+    public void setAvailabilityStatus(int availabilityStatus) {
+        AvailabilityStatus = availabilityStatus;
+    }
+
+    public String getBranch() {
+        return branch;
+    }
+
+    public void setBranch(String branch) {
+        this.branch = branch;
+    }
+
+    public Year getGeneration() {
+        return generation;
+    }
+
+    public void setGeneration(Year generation) {
+        this.generation = generation;
     }
 }
