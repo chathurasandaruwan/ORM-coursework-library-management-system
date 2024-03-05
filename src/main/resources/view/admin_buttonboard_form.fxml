@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -44,7 +45,10 @@
                </graphic>
                <cursor>
                   <Cursor fx:constant="HAND" />
-               </cursor></JFXButton>
+               </cursor>
+               <effect>
+                  <Glow level="0.5" />
+               </effect></JFXButton>
             <JFXButton fx:id="btnBranch" layoutX="449.0" layoutY="30.0" onAction="#btnBranchOnAction" prefHeight="60.0" prefWidth="300.0" style="-fx-background-color: #1e90ff;" text="Branch">
                <font>
                   <Font name="System Bold" size="20.0" />
@@ -58,7 +62,10 @@
                </graphic>
                <cursor>
                   <Cursor fx:constant="HAND" />
-               </cursor></JFXButton>
+               </cursor>
+               <effect>
+                  <Glow level="0.5" />
+               </effect></JFXButton>
             <Label layoutX="780.0" layoutY="46.0" text="Member Count :" />
             <Label fx:id="lblMemberCount" layoutX="897.0" layoutY="34.0" text="19">
                <font>
