@@ -1,6 +1,5 @@
 package lk.ijse.Library_management_system.config;
 
-import lk.ijse.Library_management_system.entity.Author;
 import lk.ijse.Library_management_system.entity.Book;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,7 +10,7 @@ public class FactoryConfiguration {
     private SessionFactory sessionFactory;
 
     private FactoryConfiguration() {
-        Configuration configuration = new Configuration().configure().addAnnotatedClass(Author.class) .addAnnotatedClass(Book.class);
+        Configuration configuration = new Configuration().configure().addAnnotatedClass(Book.class);
         sessionFactory = configuration.buildSessionFactory();
     }
     public static FactoryConfiguration getInstance(){
