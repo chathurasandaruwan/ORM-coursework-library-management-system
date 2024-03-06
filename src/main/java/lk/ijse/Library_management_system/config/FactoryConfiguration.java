@@ -1,6 +1,7 @@
-package lk.ijse.Library_management_system.config;
+/*package lk.ijse.Library_management_system.config;
 
 import lk.ijse.Library_management_system.entity.Book;
+import lk.ijse.Library_management_system.entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -10,13 +11,39 @@ public class FactoryConfiguration {
     private SessionFactory sessionFactory;
 
     private FactoryConfiguration() {
-        Configuration configuration = new Configuration().configure().addAnnotatedClass(Book.class);
+        Configuration configuration = new Configuration().configure("/src/main/resources/hibernate.properties").addAnnotatedClass(User.class);
         sessionFactory = configuration.buildSessionFactory();
     }
     public static FactoryConfiguration getInstance(){
         return factoryConfiguration == null ? factoryConfiguration =new FactoryConfiguration() : factoryConfiguration;
     }
     public Session getSession(){
+        return sessionFactory.openSession();
+    }
+}*/
+
+package lk.ijse.Library_management_system.config;
+
+import lk.ijse.Library_management_system.entity.Book;
+import lk.ijse.Library_management_system.entity.User;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+public class FactoryConfiguration {
+    private static FactoryConfiguration factoryConfiguration;
+    private SessionFactory sessionFactory;
+
+    private FactoryConfiguration() {
+        Configuration configuration = new Configuration().configure("hibernate.properties").addAnnotatedClass(User.class);
+        sessionFactory = configuration.buildSessionFactory();
+    }
+
+    public static FactoryConfiguration getInstance() {
+        return factoryConfiguration == null ? factoryConfiguration = new FactoryConfiguration() : factoryConfiguration;
+    }
+
+    public Session getSession() {
         return sessionFactory.openSession();
     }
 }

@@ -1,4 +1,6 @@
 package lk.ijse.Library_management_system.dao.custom;
 
-public interface UserDAO {
+import lk.ijse.Library_management_system.dao.SupperDAO;
+
+public interface UserDAO extends SupperDAO {
 }
