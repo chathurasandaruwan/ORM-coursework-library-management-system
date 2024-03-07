@@ -6,6 +6,7 @@ import org.hibernate.cfg.Configuration;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class FactoryConfiguration {
@@ -16,14 +17,15 @@ public class FactoryConfiguration {
     private FactoryConfiguration(){
         Properties properties = new Properties();
         try {
-            properties.load(new FileInputStream("hibernate.properties"));
+            InputStream inputStream = ClassLoader.getSystemClassLoader().getResourceAsStream("hibernate.properties");
+            properties.load(inputStream);
         }catch (IOException e) {
             e.printStackTrace();
         }
-        Configuration configuration = new Configuration()
-                .addProperties(properties)
-                .addAnnotatedClass(User.class);
-        sessionFactory = configuration.buildSessionFactory();
+        sessionFactory = new Configuration()
+                .setProperties(properties).
+                addAnnotatedClass(User.class).
+                buildSessionFactory();
     }
     public static FactoryConfiguration getInstance(){
         return (factoryConfiguration == null) ? factoryConfiguration = new FactoryConfiguration() : factoryConfiguration;
