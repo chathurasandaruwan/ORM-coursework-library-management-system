@@ -1,7 +1,7 @@
 package lk.ijse.Library_management_system.entity;
 
 import jakarta.persistence.*;
-
+@Entity
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
