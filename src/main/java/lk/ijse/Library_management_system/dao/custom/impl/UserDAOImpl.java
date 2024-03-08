@@ -20,26 +20,16 @@ public void saveUser(){
     session.close();*/
 }
 
-   /* public static void main(String[] args) {
-//        Session session= FactoryConfiguration.getInstance().getSession();
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction transaction = session.beginTransaction();
-        User user =new User();
-        user.setName("chathura");
-        user.setEmail("chathura@1234");
-        user.setPassword("1234");
-        session.save(user);
-        transaction.commit();
-        session.close();
-    }*/
    public static void main(String[] args) {
        Session session = FactoryConfiguration.getInstance().getSession();
        Transaction transaction = session.beginTransaction();
-       String userId ="U001";
-       String userName ="chathura";
-       String password = "123";
-       UserDTO userDTO = new UserDTO(userId, userName, password);
-       session.save(userDTO);
+
+       User user =new User();
+       user.setId(01);
+       user.setName("chathura");
+       user.setEmail("chathura@1234");
+       user.setPassword("1234");
+       session.save(user);
        transaction.commit();
        session.close();
    }

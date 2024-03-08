@@ -22,10 +22,10 @@ public class FactoryConfiguration {
         }catch (IOException e) {
             e.printStackTrace();
         }
-        sessionFactory = new Configuration()
-                .setProperties(properties).
-                addAnnotatedClass(User.class).
-                buildSessionFactory();
+        Configuration configuration = new Configuration()
+                .setProperties(properties)
+                .addAnnotatedClass(User.class);
+        sessionFactory = configuration.buildSessionFactory();
     }
     public static FactoryConfiguration getInstance(){
         return (factoryConfiguration == null) ? factoryConfiguration = new FactoryConfiguration() : factoryConfiguration;
