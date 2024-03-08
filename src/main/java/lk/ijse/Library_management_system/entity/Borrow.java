@@ -3,7 +3,7 @@ package lk.ijse.Library_management_system.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-
+@Entity
 public class Borrow {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
