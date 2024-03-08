@@ -24,12 +24,12 @@ public void saveUser(){
        Session session = FactoryConfiguration.getInstance().getSession();
        Transaction transaction = session.beginTransaction();
 
-       User user =new User();
-       user.setId(01);
+
+       /*User user =new User();
        user.setName("chathura");
        user.setEmail("chathura@1234");
        user.setPassword("1234");
-       session.save(user);
+       session.save(user);*/
        transaction.commit();
        session.close();
    }
