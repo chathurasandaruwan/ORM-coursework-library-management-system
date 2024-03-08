@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 @Entity
 @Cacheable
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Branch {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
