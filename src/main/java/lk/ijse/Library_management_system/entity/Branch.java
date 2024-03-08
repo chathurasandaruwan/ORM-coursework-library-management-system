@@ -1,11 +1,14 @@
 package lk.ijse.Library_management_system.entity;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 @Entity
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Branch {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
