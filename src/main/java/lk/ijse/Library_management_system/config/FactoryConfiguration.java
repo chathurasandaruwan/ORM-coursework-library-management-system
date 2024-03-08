@@ -31,7 +31,7 @@ public class FactoryConfiguration {
             e.printStackTrace();
         }
         Configuration configuration = new Configuration()
-                .addProperties(properties)
+                .setProperties(properties)
                 .addAnnotatedClass(User.class)
                 .addAnnotatedClass(Book.class)
                 .addAnnotatedClass(Borrow.class)
