@@ -36,21 +36,32 @@ public class UserProfileFromController {
     private Button btnUpdate;
     @FXML
     private Label lblUserId;
+    @FXML
+    private Label lblWarningPassword1;
+
+    @FXML
+    private Label lblWarningPassword2;
     UserBO userBO = new UserBOImpl();
     public void initialize() {
         textNewPassword.setDisable(true);
         textConfirmPassword.setDisable(true);
         btnUpdate.setDisable(true);
+        btnDelete.setDisable(true);
     }
     public void resetAll(){
         textNewPassword.setDisable(true);
         textConfirmPassword.setDisable(true);
         btnUpdate.setDisable(true);
+        btnDelete.setDisable(true);
         lblUserId.setText("");
         textUserName.clear();
         textEmail.clear();
         textNewPassword.clear();
         textConfirmPassword.clear();
+        lblWarningPassword1.setText("");
+        lblWarningPassword2.setText("");
+        textConfirmPassword.setStyle("");
+        textNewPassword.setStyle("");
     }
     @FXML
     void textEmailOnAction(ActionEvent event) {
@@ -63,6 +74,7 @@ public class UserProfileFromController {
                     textNewPassword.setDisable(false);
                     textConfirmPassword.setDisable(false);
                     btnUpdate.setDisable(false);
+                    btnDelete.setDisable(false);
                     lblUserId.setText(String.valueOf(user.getId()));
                     return;
                 }
@@ -95,7 +107,10 @@ public class UserProfileFromController {
                resetAll();
            }
         }else {
-            new Alert(Alert.AlertType.ERROR, "PASSWORDS NOT MATCHED !!!").show();
+            lblWarningPassword1.setText("Password not matched !!! , Please try again !!!");
+            lblWarningPassword2.setText("Password not matched !!! , Please try again !!!");
+            textConfirmPassword.setStyle("-fx-border-color: red");
+            textNewPassword.setStyle("-fx-border-color: red");
         }
     }
 
