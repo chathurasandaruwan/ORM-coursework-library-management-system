@@ -12,13 +12,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.Library_management_system.bo.custom.UserBO;
 import lk.ijse.Library_management_system.bo.custom.impl.UserBOImpl;
-import lk.ijse.Library_management_system.config.FactoryConfiguration;
 import lk.ijse.Library_management_system.dto.UserDTO;
-import lk.ijse.Library_management_system.entity.User;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 import java.io.IOException;
+import java.util.List;
 
 public class UserSignUpFromController {
     @FXML
@@ -55,11 +52,11 @@ public class UserSignUpFromController {
         String password = textPassword.getText();
         UserDTO userDTO = new UserDTO(name,email,password);
         userBO.saveUser(userDTO);
+        List<UserDTO>users = userBO.getAllUser();
+        for (UserDTO user : users) {
+            System.out.println(user.getId());
 
-       /* Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
-        transaction.commit();
-        session.close();*/
+        }
     }
 
     @FXML

@@ -6,10 +6,22 @@ import lk.ijse.Library_management_system.dao.custom.impl.UserDAOImpl;
 import lk.ijse.Library_management_system.dto.UserDTO;
 import lk.ijse.Library_management_system.entity.User;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserBOImpl implements UserBO {
     UserDAO userDAO = new UserDAOImpl();
     @Override
-    public void saveUser(UserDTO dto){
-        userDAO.save(new User(dto.getName(), dto.getEmail(), dto.getPassword()));
+    public boolean saveUser(UserDTO dto){
+        return userDAO.save(new User(dto.getName(), dto.getEmail(), dto.getPassword()));
+    }
+    @Override
+    public List<UserDTO> getAllUser(){
+        List<UserDTO>userDTOS =new ArrayList<>();
+        List<User> users = userDAO.getAll();
+        for (User user : users) {
+            userDTOS.add(new UserDTO(user.getId(),user.getName(),user.getEmail(),user.getPassword()));
+        }
+        return userDTOS;
     }
 }
