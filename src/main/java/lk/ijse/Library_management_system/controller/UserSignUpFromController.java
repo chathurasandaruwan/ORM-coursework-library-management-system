@@ -10,6 +10,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.Library_management_system.config.FactoryConfiguration;
+import lk.ijse.Library_management_system.entity.User;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.io.IOException;
 
@@ -42,6 +46,16 @@ public class UserSignUpFromController {
 
     @FXML
     void btnSignUpOnAction(ActionEvent event) {
+        String name = textName.getText();
+        String email = textEmail.getText();
+        String password = textPassword.getText();
+
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        User user = new User(name,email,password);
+        session.save(user);
+        transaction.commit();
+        session.close();
 
     }
 

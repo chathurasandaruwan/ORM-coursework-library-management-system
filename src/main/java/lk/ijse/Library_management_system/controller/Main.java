@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) {
 
 
-            Session session = FactoryConfiguration.getInstance().getSession();
+                Session session = FactoryConfiguration.getInstance().getSession();
                 Transaction transaction = session.beginTransaction();
                 User user = new User();
                 user.setName("chathura");

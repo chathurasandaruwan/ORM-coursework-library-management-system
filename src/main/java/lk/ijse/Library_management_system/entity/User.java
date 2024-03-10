@@ -32,4 +32,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Borrow> borrows = new ArrayList<>();
 
+    public User(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
 }
