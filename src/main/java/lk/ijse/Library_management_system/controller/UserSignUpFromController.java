@@ -53,6 +53,7 @@ public class UserSignUpFromController {
         List<UserDTO>users = userBO.getAllUser();
         for (UserDTO user : users) {
             if (name.equals(user.getName())){
+                textName.setStyle("-fx-border-color: red");
                 lblUserNameWarning.setText("This user name already taken !!! , please try again !!");
                 return;
             }
@@ -61,7 +62,7 @@ public class UserSignUpFromController {
         UserDTO userDTO = new UserDTO(name,email,password);
         boolean isSaved = userBO.saveUser(userDTO);
         if (isSaved){
-            new Alert(Alert.AlertType.INFORMATION, "SIGN Up Success!! , please SIGN IN now !!!").show();
+            new Alert(Alert.AlertType.INFORMATION, "Sign Up Success!! , please Sign IN now !!!").show();
             btnSignIn.fire();
         }
     }

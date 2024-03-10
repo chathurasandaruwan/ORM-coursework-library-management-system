@@ -43,7 +43,7 @@
                   <Image url="@../assest/image/icons8-return-purchase-64.png" />
                </image>
             </ImageView>
-            <Label layoutX="685.0" layoutY="182.0" text="Need return Book Count">
+            <Label layoutX="669.0" layoutY="182.0" text="Need to return Book Count">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
