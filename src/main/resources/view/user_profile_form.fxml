@@ -16,8 +16,8 @@
          <children>
             <TextField fx:id="textConfirmPassword" layoutX="45.0" layoutY="360.0" prefHeight="26.0" prefWidth="500.0" />
             <TextField fx:id="textNewPassword" layoutX="45.0" layoutY="270.0" prefHeight="26.0" prefWidth="500.0" />
-            <TextField fx:id="textEmail" layoutX="45.0" layoutY="190.0" prefHeight="26.0" prefWidth="500.0" />
-            <TextField fx:id="textUserName" layoutX="45.0" layoutY="100.0" prefHeight="26.0" prefWidth="500.0" />
+            <TextField fx:id="textEmail" layoutX="45.0" layoutY="190.0" onAction="#textEmailOnAction" prefHeight="26.0" prefWidth="500.0" promptText="Enter your email" />
+            <TextField fx:id="textUserName" layoutX="45.0" layoutY="100.0" prefHeight="26.0" prefWidth="500.0" promptText="Enter user name" />
             <Label layoutX="45.0" layoutY="70.0" text="User name :">
                <font>
                   <Font name="System Bold" size="18.0" />
@@ -77,6 +77,16 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <Label layoutX="45.0" layoutY="463.0" text="Your ID :">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblUserId" layoutX="142.0" layoutY="464.0">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>
