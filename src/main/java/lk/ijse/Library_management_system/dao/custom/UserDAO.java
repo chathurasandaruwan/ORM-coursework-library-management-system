@@ -9,4 +9,6 @@ public interface UserDAO extends SupperDAO {
     boolean save(User entity);
 
     List<User> getAll();
+
+    boolean update(User entity);
 }

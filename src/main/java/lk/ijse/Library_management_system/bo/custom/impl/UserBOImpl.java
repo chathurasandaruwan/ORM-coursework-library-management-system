@@ -24,4 +24,8 @@ public class UserBOImpl implements UserBO {
         }
         return userDTOS;
     }
+    @Override
+    public boolean updateUser(UserDTO dto){
+        return userDAO.update(new User(dto.getId(),dto.getName(), dto.getEmail(), dto.getPassword()));
+    }
 }

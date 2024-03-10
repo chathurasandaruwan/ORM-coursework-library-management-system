@@ -2,6 +2,7 @@ package lk.ijse.Library_management_system.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -41,6 +42,16 @@ public class UserProfileFromController {
         textConfirmPassword.setDisable(true);
         btnUpdate.setDisable(true);
     }
+    public void resetAll(){
+        textNewPassword.setDisable(true);
+        textConfirmPassword.setDisable(true);
+        btnUpdate.setDisable(true);
+        lblUserId.setText("");
+        textUserName.clear();
+        textEmail.clear();
+        textNewPassword.clear();
+        textConfirmPassword.clear();
+    }
     @FXML
     void textEmailOnAction(ActionEvent event) {
         String name = textUserName.getText();
@@ -57,7 +68,7 @@ public class UserProfileFromController {
                 }
             }
         }
-        System.out.println("Not Found");
+        new Alert(Alert.AlertType.ERROR, "User name and Email NOT MATCHED").show();
 
     }
     @FXML
@@ -72,7 +83,20 @@ public class UserProfileFromController {
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
-
+        long id = Long.parseLong(lblUserId.getText());
+        String name = textUserName.getText();
+        String email = textEmail.getText();
+        String newPassword = textNewPassword.getText();
+        String confirmPassword = textConfirmPassword.getText();
+        if (newPassword.equals(confirmPassword)){
+           boolean isUpdate= userBO.updateUser(new UserDTO(id,name,email,newPassword));
+           if (isUpdate){
+               new Alert(Alert.AlertType.INFORMATION, "UPDATE SUCCESSFUL !!!").show();
+               resetAll();
+           }
+        }else {
+            new Alert(Alert.AlertType.ERROR, "PASSWORDS NOT MATCHED !!!").show();
+        }
     }
 
 }

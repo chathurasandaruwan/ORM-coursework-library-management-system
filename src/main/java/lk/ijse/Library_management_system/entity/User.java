@@ -9,8 +9,8 @@ import javax.persistence.*;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Cacheable
 @org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -31,6 +31,13 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Borrow> borrows = new ArrayList<>();
+
+    public User(long id, String name, String email, String password) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
 
     public User(String name, String email, String password) {
         this.name = name;

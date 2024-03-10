@@ -8,4 +8,6 @@ public interface UserBO {
     boolean saveUser(UserDTO dto);
 
     List<UserDTO> getAllUser();
+
+    boolean updateUser(UserDTO dto);
 }

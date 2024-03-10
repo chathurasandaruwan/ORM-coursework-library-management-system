@@ -27,5 +27,14 @@ public List<User> getAll(){
     session.close();
     return users;
 }
+@Override
+public boolean update(User entity){
+    Session session = FactoryConfiguration.getInstance().getSession();
+    Transaction transaction = session.beginTransaction();
+    session.update(entity);
+    transaction.commit();
+    session.close();
+    return true;
+}
 
 }
