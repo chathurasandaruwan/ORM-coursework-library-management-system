@@ -10,7 +10,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.Library_management_system.bo.custom.UserBO;
+import lk.ijse.Library_management_system.bo.custom.impl.UserBOImpl;
 import lk.ijse.Library_management_system.config.FactoryConfiguration;
+import lk.ijse.Library_management_system.dto.UserDTO;
 import lk.ijse.Library_management_system.entity.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -32,6 +35,7 @@ public class UserSignUpFromController {
 
     @FXML
     private TextField textEmail;
+    UserBO userBO = new UserBOImpl();
 
     @FXML
     void btnSignInOnAction(ActionEvent event) throws IOException {
@@ -49,13 +53,13 @@ public class UserSignUpFromController {
         String name = textName.getText();
         String email = textEmail.getText();
         String password = textPassword.getText();
+        UserDTO userDTO = new UserDTO(name,email,password);
+        userBO.saveUser(userDTO);
 
-        Session session = FactoryConfiguration.getInstance().getSession();
+       /* Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        User user = new User(name,email,password);
-        session.save(user);
         transaction.commit();
-        session.close();
+        session.close();*/
     }
 
     @FXML
@@ -65,7 +69,7 @@ public class UserSignUpFromController {
 
     @FXML
     void mouseExitOnAction(MouseEvent event) {
-        btnSignIn.setStyle("-fx-background-color: #1e90ff; -fx-border-color: white; -fx-text-fill: white;");
+         btnSignIn.setStyle("-fx-background-color: #1e90ff; -fx-border-color: white; -fx-text-fill: white;");
     }
 
 }
