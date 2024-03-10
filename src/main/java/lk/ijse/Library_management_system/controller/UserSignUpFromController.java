@@ -4,9 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -32,6 +30,8 @@ public class UserSignUpFromController {
 
     @FXML
     private TextField textEmail;
+    @FXML
+    private Label lblUserNameWarning;
     UserBO userBO = new UserBOImpl();
 
     @FXML
@@ -50,12 +50,19 @@ public class UserSignUpFromController {
         String name = textName.getText();
         String email = textEmail.getText();
         String password = textPassword.getText();
-        UserDTO userDTO = new UserDTO(name,email,password);
-        userBO.saveUser(userDTO);
         List<UserDTO>users = userBO.getAllUser();
         for (UserDTO user : users) {
-            System.out.println(user.getId());
-
+            if (name.equals(user.getName())){
+                lblUserNameWarning.setText("This user name already taken !!! , please try again !!");
+                return;
+            }
+        }
+        lblUserNameWarning.setText("");
+        UserDTO userDTO = new UserDTO(name,email,password);
+        boolean isSaved = userBO.saveUser(userDTO);
+        if (isSaved){
+            new Alert(Alert.AlertType.INFORMATION, "SIGN Up Success!! , please SIGN IN now !!!").show();
+            btnSignIn.fire();
         }
     }
 
