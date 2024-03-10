@@ -56,7 +56,6 @@ public class UserSignUpFromController {
         session.save(user);
         transaction.commit();
         session.close();
-
     }
 
     @FXML
