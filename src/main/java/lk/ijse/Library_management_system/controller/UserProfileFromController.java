@@ -2,17 +2,23 @@ package lk.ijse.Library_management_system.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import lk.ijse.Library_management_system.bo.custom.UserBO;
 import lk.ijse.Library_management_system.bo.custom.impl.UserBOImpl;
 import lk.ijse.Library_management_system.dto.UserDTO;
 
+import java.io.IOException;
 import java.util.List;
 
 public class UserProfileFromController {
+    @FXML
+    private AnchorPane root;
 
     @FXML
     private TextField textConfirmPassword;
@@ -94,8 +100,10 @@ public class UserProfileFromController {
     }
 
     @FXML
-    void btnReturnOnAction(ActionEvent event) {
-
+    void btnReturnOnAction(ActionEvent event) throws IOException {
+        Parent rootNode = FXMLLoader.load(getClass().getResource("/view/user_books_form.fxml"));
+        root.getChildren().clear();
+        root.getChildren().add(rootNode);
     }
 
     @FXML
