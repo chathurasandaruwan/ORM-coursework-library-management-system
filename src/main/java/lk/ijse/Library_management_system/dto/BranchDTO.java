@@ -9,6 +9,11 @@ public class BranchDTO {
     public BranchDTO() {
     }
 
+    public BranchDTO(String address, LocalDate openedDate) {
+        this.address = address;
+        this.openedDate = openedDate;
+    }
+
     public BranchDTO(int id, String address, LocalDate openedDate) {
         this.id = id;
         this.address = address;
