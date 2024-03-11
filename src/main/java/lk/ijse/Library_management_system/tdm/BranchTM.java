@@ -2,20 +2,20 @@ package lk.ijse.Library_management_system.tdm;
 import java.time.LocalDate;
 
 public class BranchTM {
-    private int id;
+    private long id;
     private String address;
     private LocalDate openedDate;
 
     public BranchTM() {
     }
 
-    public BranchTM(int id, String address, LocalDate openedDate) {
+    public BranchTM(long id, String address, LocalDate openedDate) {
         this.id = id;
         this.address = address;
         this.openedDate = openedDate;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

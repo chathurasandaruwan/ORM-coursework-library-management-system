@@ -2,7 +2,7 @@ package lk.ijse.Library_management_system.dto;
 import java.time.LocalDate;
 
 public class BranchDTO {
-    private int id;
+    private long id;
     private String address;
     private LocalDate openedDate;
 
@@ -14,13 +14,13 @@ public class BranchDTO {
         this.openedDate = openedDate;
     }
 
-    public BranchDTO(int id, String address, LocalDate openedDate) {
+    public BranchDTO(long id, String address, LocalDate openedDate) {
         this.id = id;
         this.address = address;
         this.openedDate = openedDate;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

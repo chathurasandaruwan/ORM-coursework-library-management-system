@@ -27,4 +27,13 @@ public class BranchDAOImpl implements BranchDAO {
         session.close();
         return branches;
     }
+    @Override
+    public boolean update(Branch entity){
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        session.update(entity);
+        transaction.commit();
+        session.close();
+        return true;
+    }
 }

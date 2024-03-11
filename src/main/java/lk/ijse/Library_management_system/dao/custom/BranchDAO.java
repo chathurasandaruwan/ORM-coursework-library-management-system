@@ -9,4 +9,6 @@ public interface BranchDAO extends SupperDAO {
     boolean save(Branch entity);
 
     List<Branch> getAll();
+
+    boolean update(Branch entity);
 }

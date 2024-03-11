@@ -72,6 +72,7 @@ public class AdminBranchFromController {
             }else {
                 btnAddNew.setOpacity(100);
                 btnAddNew.setDisable(false);
+                btnSave.setText("Save");
                 resetAll();
             }
         } );
@@ -99,7 +100,6 @@ public class AdminBranchFromController {
     void btnPlusOnAction(ActionEvent event) {
         btnAddNew.setOpacity(100);
         btnAddNew.setDisable(false);
-        btnSave.setText("Save");
         resetAll();
     }
     @FXML
@@ -130,7 +130,17 @@ public class AdminBranchFromController {
         }
 //        update branch
         else {
-            System.out.println("Update");
+            long id = Long.parseLong(textId.getText());
+            String address = textAddress.getText();
+            LocalDate opDate = OpenedDayPiker.getValue();
+
+            boolean isUpdate = branchBO.updateBranch(new BranchDTO(id,address,opDate));
+            if (isUpdate){
+                new Alert(Alert.AlertType.INFORMATION,"UPDATE SUCCESS !!!").show();
+                textAddress.clear();
+                OpenedDayPiker.setValue(null);
+                loadAllBranch();
+            }
         }
     }
     public void loadAllBranch(){

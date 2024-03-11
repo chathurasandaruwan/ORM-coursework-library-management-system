@@ -19,7 +19,7 @@ import java.util.List;
 public class Branch {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @Column(name = "address")
     private String address;
@@ -31,6 +31,12 @@ public class Branch {
     private List<Book>books;
 
     public Branch(String address, LocalDate openedDate) {
+        this.address = address;
+        this.openedDate = openedDate;
+    }
+
+    public Branch(long id, String address, LocalDate openedDate) {
+        this.id = id;
         this.address = address;
         this.openedDate = openedDate;
     }

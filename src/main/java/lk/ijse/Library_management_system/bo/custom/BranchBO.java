@@ -9,4 +9,6 @@ public interface BranchBO extends SupperBO {
     boolean saveBranch(BranchDTO dto);
 
     List<BranchDTO> getAllBranch();
+
+    boolean updateBranch(BranchDTO dto);
 }
