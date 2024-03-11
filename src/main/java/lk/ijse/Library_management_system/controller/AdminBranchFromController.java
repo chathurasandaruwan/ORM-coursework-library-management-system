@@ -41,7 +41,9 @@ public class AdminBranchFromController {
     }
     @FXML
     void btnAddNewOnAction(ActionEvent event) {
-
+        textAddress.setDisable(false);
+        OpenedDayPiker.setDisable(false);
+        btnSave.setDisable(false);
     }
 
     @FXML
