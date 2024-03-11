@@ -6,8 +6,10 @@ import javafx.scene.control.*;
 import lk.ijse.Library_management_system.bo.custom.BranchBO;
 import lk.ijse.Library_management_system.bo.custom.impl.BranchBOImpl;
 import lk.ijse.Library_management_system.dto.BranchDTO;
+import lk.ijse.Library_management_system.entity.Branch;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class AdminBranchFromController {
 
@@ -32,6 +34,7 @@ public class AdminBranchFromController {
     private Button btnAddNew;
     BranchBO branchBO = new BranchBOImpl();
     public void initialize() {
+        loadAllBranch();
         resetAll();
     }
     public void resetAll(){
@@ -63,6 +66,12 @@ public class AdminBranchFromController {
             new Alert(Alert.AlertType.INFORMATION,"SAVE SUCCESS !!!").show();
             textAddress.clear();
             OpenedDayPiker.setValue(null);
+        }
+    }
+    public void loadAllBranch(){
+        List<BranchDTO> branches =branchBO.getAllBranch();
+        for (BranchDTO branch : branches) {
+            System.out.println(branch.getAddress());
         }
     }
 
