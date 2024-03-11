@@ -30,4 +30,8 @@ public class Branch {
     @OneToMany(mappedBy = "branch", cascade = CascadeType.ALL)
     private List<Book>books;
 
+    public Branch(String address, LocalDate openedDate) {
+        this.address = address;
+        this.openedDate = openedDate;
+    }
 }
