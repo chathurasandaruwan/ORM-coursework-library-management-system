@@ -41,6 +41,8 @@ public class AdminBranchFromController {
 
     @FXML
     private TableColumn<?, ?> columnAddress;
+    @FXML
+    private Button btnPluse;
 
     @FXML
     private TableColumn<BranchTM, LocalDate> columnOpenDate;
@@ -60,6 +62,8 @@ public class AdminBranchFromController {
                 btnSave.setText("Update");
                 textAddress.setDisable(false);
                 OpenedDayPiker.setDisable(false);
+                btnPluse.setDisable(false);
+                btnPluse.setOpacity(100);
 
                 textId.setText(String.valueOf(newValue.getId()));
                 textAddress.setText(newValue.getAddress());
@@ -83,7 +87,20 @@ public class AdminBranchFromController {
         OpenedDayPiker.setDisable(true);
         btnSave.setDisable(true);
         btnDelete.setDisable(true);
+        textAddress.clear();
+        OpenedDayPiker.setValue(null);
+        textId.clear();
+        btnPluse.setDisable(true);
+        btnPluse.setOpacity(0);
+        tblView.getSelectionModel().clearSelection();
 
+    }
+    @FXML
+    void btnPlusOnAction(ActionEvent event) {
+        btnAddNew.setOpacity(100);
+        btnAddNew.setDisable(false);
+        btnSave.setText("Save");
+        resetAll();
     }
     @FXML
     void btnAddNewOnAction(ActionEvent event) {
@@ -99,21 +116,22 @@ public class AdminBranchFromController {
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
+//        save branch
         if ("Save".equals(btnSave.getText())){
-            System.out.println("save");
+            LocalDate opDate = OpenedDayPiker.getValue();
+            String address = textAddress.getText();
+            boolean isSaved = branchBO.saveBranch(new BranchDTO(address,opDate));
+            if (isSaved){
+                new Alert(Alert.AlertType.INFORMATION,"SAVE SUCCESS !!!").show();
+                textAddress.clear();
+                OpenedDayPiker.setValue(null);
+                loadAllBranch();
+            }
         }
+//        update branch
         else {
             System.out.println("Update");
         }
-        /*LocalDate opDate = OpenedDayPiker.getValue();
-        String address = textAddress.getText();
-        boolean isSaved = branchBO.saveBranch(new BranchDTO(address,opDate));
-        if (isSaved){
-            new Alert(Alert.AlertType.INFORMATION,"SAVE SUCCESS !!!").show();
-            textAddress.clear();
-            OpenedDayPiker.setValue(null);
-            loadAllBranch();
-        }*/
     }
     public void loadAllBranch(){
         tblView.getItems().clear();

@@ -22,6 +22,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <Button fx:id="btnPluse" layoutX="15.0" layoutY="100.0" mnemonicParsing="false" onAction="#btnPlusOnAction" style="-fx-background-color: lightblue;" text="+" />
          </children>
       </Pane>
       <TableView fx:id="tblView" layoutX="450.0" layoutY="20.0" prefHeight="520.0" prefWidth="490.0">
