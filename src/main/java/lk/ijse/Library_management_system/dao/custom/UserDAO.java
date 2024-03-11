@@ -11,4 +11,7 @@ public interface UserDAO extends SupperDAO {
     List<User> getAll();
 
     boolean update(User entity);
+
+
+    boolean delete(long id);
 }

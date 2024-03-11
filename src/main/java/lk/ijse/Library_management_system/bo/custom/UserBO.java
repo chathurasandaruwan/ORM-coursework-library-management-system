@@ -10,4 +10,7 @@ public interface UserBO {
     List<UserDTO> getAllUser();
 
     boolean updateUser(UserDTO dto);
+
+
+    boolean deleteUser(long id);
 }

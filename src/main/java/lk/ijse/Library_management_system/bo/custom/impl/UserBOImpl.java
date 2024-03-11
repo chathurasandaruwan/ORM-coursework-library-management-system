@@ -28,4 +28,8 @@ public class UserBOImpl implements UserBO {
     public boolean updateUser(UserDTO dto){
         return userDAO.update(new User(dto.getId(),dto.getName(), dto.getEmail(), dto.getPassword()));
     }
+    @Override
+    public boolean deleteUser(long id){
+        return userDAO.delete(id);
+    }
 }

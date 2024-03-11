@@ -85,7 +85,12 @@ public class UserProfileFromController {
     }
     @FXML
     void btnDeletOnAction(ActionEvent event) {
-
+        long userId = Long.parseLong(lblUserId.getText());
+        boolean isDelete = userBO.deleteUser(userId);
+        if (isDelete){
+            new Alert(Alert.AlertType.INFORMATION, "DELETE SUCCESSFUL !!!").show();
+            resetAll();
+        }
     }
 
     @FXML

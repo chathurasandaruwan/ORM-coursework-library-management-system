@@ -36,5 +36,15 @@ public boolean update(User entity){
     session.close();
     return true;
 }
+@Override
+public boolean delete(long id){
+    Session session = FactoryConfiguration.getInstance().getSession();
+    Transaction transaction = session.beginTransaction();
+    User user = session.get(User.class, id);
+    session.remove(user);
+    transaction.commit();
+    session.close();
+    return true;
+}
 
 }
