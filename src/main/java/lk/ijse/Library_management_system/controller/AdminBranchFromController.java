@@ -61,6 +61,8 @@ public class AdminBranchFromController {
         boolean isSaved = branchBO.saveBranch(new BranchDTO(address,opDate));
         if (isSaved){
             new Alert(Alert.AlertType.INFORMATION,"SAVE SUCCESS !!!").show();
+            textAddress.clear();
+            OpenedDayPiker.setValue(null);
         }
     }
 
