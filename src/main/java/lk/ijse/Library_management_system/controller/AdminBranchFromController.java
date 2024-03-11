@@ -26,6 +26,23 @@ public class AdminBranchFromController {
 
     @FXML
     private Button btnSave;
+    @FXML
+    private Button btnAddNew;
+    public void initialize() {
+        resetAll();
+    }
+    public void resetAll(){
+        textId.setOpacity(0);
+        textAddress.setDisable(true);
+        OpenedDayPiker.setDisable(true);
+        btnSave.setDisable(true);
+        btnDelete.setDisable(true);
+
+    }
+    @FXML
+    void btnAddNewOnAction(ActionEvent event) {
+
+    }
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
