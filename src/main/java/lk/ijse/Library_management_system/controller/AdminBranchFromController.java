@@ -99,7 +99,13 @@ public class AdminBranchFromController {
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
-        LocalDate opDate = OpenedDayPiker.getValue();
+        if ("Save".equals(btnSave.getText())){
+            System.out.println("save");
+        }
+        else {
+            System.out.println("Update");
+        }
+        /*LocalDate opDate = OpenedDayPiker.getValue();
         String address = textAddress.getText();
         boolean isSaved = branchBO.saveBranch(new BranchDTO(address,opDate));
         if (isSaved){
@@ -107,7 +113,7 @@ public class AdminBranchFromController {
             textAddress.clear();
             OpenedDayPiker.setValue(null);
             loadAllBranch();
-        }
+        }*/
     }
     public void loadAllBranch(){
         tblView.getItems().clear();
