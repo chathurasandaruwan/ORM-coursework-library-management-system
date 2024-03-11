@@ -50,6 +50,27 @@ public class AdminBranchFromController {
         setvaluesFactory();
         loadAllBranch();
         resetAll();
+        tblView.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue) ->{
+            if (newValue != null){
+                btnAddNew.setOpacity(0);
+                btnAddNew.setDisable(true);
+                textId.setOpacity(100);
+                btnDelete.setDisable(false);
+                btnSave.setDisable(false);
+                btnSave.setText("Update");
+                textAddress.setDisable(false);
+                OpenedDayPiker.setDisable(false);
+
+                textId.setText(String.valueOf(newValue.getId()));
+                textAddress.setText(newValue.getAddress());
+                OpenedDayPiker.setValue(newValue.getOpenedDate());
+
+            }else {
+                btnAddNew.setOpacity(100);
+                btnAddNew.setDisable(false);
+                resetAll();
+            }
+        } );
     }
     private void setvaluesFactory() {
         columnId.setCellValueFactory(new PropertyValueFactory<>("id"));
