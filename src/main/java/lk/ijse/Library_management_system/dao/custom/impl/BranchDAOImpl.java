@@ -36,4 +36,14 @@ public class BranchDAOImpl implements BranchDAO {
         session.close();
         return true;
     }
+    @Override
+    public boolean delete(long id){
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Branch branch = session.get(Branch.class,id);
+        session.delete(branch);
+        transaction.commit();
+        session.close();
+        return true;
+    }
 }

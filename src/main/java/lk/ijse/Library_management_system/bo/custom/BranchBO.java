@@ -11,4 +11,6 @@ public interface BranchBO extends SupperBO {
     List<BranchDTO> getAllBranch();
 
     boolean updateBranch(BranchDTO dto);
+
+    boolean deleteBranch(long id);
 }

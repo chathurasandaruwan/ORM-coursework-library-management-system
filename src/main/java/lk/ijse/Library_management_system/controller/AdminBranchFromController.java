@@ -111,7 +111,10 @@ public class AdminBranchFromController {
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
-
+        boolean isDelete = branchBO.deleteBranch(Long.parseLong(textId.getText()));
+        if (isDelete){
+            loadAllBranch();
+        }
     }
 
     @FXML

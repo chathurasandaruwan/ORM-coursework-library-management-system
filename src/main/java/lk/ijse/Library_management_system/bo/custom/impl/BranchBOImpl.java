@@ -28,4 +28,8 @@ public class BranchBOImpl implements BranchBO {
     public boolean updateBranch(BranchDTO dto){
         return branchDAO.update(new Branch(dto.getId(),dto.getAddress(),dto.getOpenedDate()));
     }
+    @Override
+    public boolean deleteBranch(long id){
+        return branchDAO.delete(id);
+    }
 }

@@ -11,4 +11,6 @@ public interface BranchDAO extends SupperDAO {
     List<Branch> getAll();
 
     boolean update(Branch entity);
+
+    boolean delete(long id);
 }
