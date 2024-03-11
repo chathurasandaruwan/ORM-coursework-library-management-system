@@ -2,10 +2,10 @@ package lk.ijse.Library_management_system.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import lk.ijse.Library_management_system.bo.custom.BranchBO;
+import lk.ijse.Library_management_system.bo.custom.impl.BranchBOImpl;
+import lk.ijse.Library_management_system.dto.BranchDTO;
 
 import java.time.LocalDate;
 
@@ -30,6 +30,7 @@ public class AdminBranchFromController {
     private Button btnSave;
     @FXML
     private Button btnAddNew;
+    BranchBO branchBO = new BranchBOImpl();
     public void initialize() {
         resetAll();
     }
@@ -57,6 +58,10 @@ public class AdminBranchFromController {
     void btnSaveOnAction(ActionEvent event) {
         LocalDate opDate = OpenedDayPiker.getValue();
         String address = textAddress.getText();
+        boolean isSaved = branchBO.saveBranch(new BranchDTO(address,opDate));
+        if (isSaved){
+            new Alert(Alert.AlertType.INFORMATION,"SAVE SUCCESS !!!").show();
+        }
     }
 
 }
