@@ -1,30 +1,41 @@
 package lk.ijse.Library_management_system.dto;
 
 
+import lk.ijse.Library_management_system.entity.Branch;
+
 public class BookDTO {
-    private int id;
+    private long id;
     private String title;
     private String author;
     private int availabilityStatus;
-    private String branch;
-    private int generation;
+    private String generation;
+    private BranchDTO branchDTO;
 
     public BookDTO() {
     }
-    public BookDTO(int id, String title, String author, int availabilityStatus, String branch, int generation) {
+
+    public BookDTO(long id, String title, String author, int availabilityStatus, String generation, BranchDTO branchDTO) {
         this.id = id;
         this.title = title;
         this.author = author;
         this.availabilityStatus = availabilityStatus;
-        this.branch = branch;
         this.generation = generation;
+        this.branchDTO = branchDTO;
     }
 
-    public int getId() {
+    public BookDTO(String title, String author, int availabilityStatus, String generation, BranchDTO branchDTO) {
+        this.title = title;
+        this.author = author;
+        this.availabilityStatus = availabilityStatus;
+        this.generation = generation;
+        this.branchDTO = branchDTO;
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -52,19 +63,19 @@ public class BookDTO {
         this.availabilityStatus = availabilityStatus;
     }
 
-    public String getBranch() {
-        return branch;
+    public BranchDTO getBranch() {
+        return branchDTO;
     }
 
-    public void setBranch(String branch) {
-        this.branch = branch;
+    public void setBranch(Branch branch) {
+        this.branchDTO = branchDTO;
     }
 
-    public int getGeneration() {
+    public String getGeneration() {
         return generation;
     }
 
-    public void setGeneration(int generation) {
+    public void setGeneration(String generation) {
         this.generation = generation;
     }
 }

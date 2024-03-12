@@ -10,6 +10,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import lk.ijse.Library_management_system.bo.custom.BookBO;
 import lk.ijse.Library_management_system.bo.custom.impl.BookBOImpl;
+import lk.ijse.Library_management_system.dto.BookDTO;
 import lk.ijse.Library_management_system.dto.BranchDTO;
 
 import java.time.LocalDate;
@@ -74,7 +75,13 @@ public class AdminBooksFromController {
     }
     @FXML
     void btnAddNewOnAction(ActionEvent event) {
-
+        btnSave.setDisable(false);
+        textTitle.setDisable(false);
+        textGen.setDisable(false);
+        textStatus.setDisable(false);
+        textAuthor.setDisable(false);
+        yearPiker.setDisable(false);
+        combBranch.setDisable(false);
     }
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
@@ -83,7 +90,31 @@ public class AdminBooksFromController {
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
+       String address = combBranch.getValue();
+       BranchDTO branchDTO = getBranchByAddress(address);
+       String author = textAuthor.getText();
+       int availabilityS = Integer.parseInt(textStatus.getText());
+       String gen = textGen.getText();
+       String title = textTitle.getText();
+       boolean isSaved = bookBO.saveBook(new BookDTO(title,author,availabilityS,gen,branchDTO));
+       if (isSaved){
+           System.out.println("Save success !!");
+       }
 
+
+
+
+    }
+    public BranchDTO getBranchByAddress(String address){
+        List<BranchDTO> branches = bookBO.getAllBranch();
+        BranchDTO branchDTO = new BranchDTO();
+        for (BranchDTO branch : branches) {
+            if (address.equals(branch.getAddress())){
+                 branchDTO.setId(branch.getId());
+                 branchDTO.setAddress(branch.getAddress());
+                 branchDTO.setOpenedDate(branch.getOpenedDate());
+            }
+        }return branchDTO;
     }
 
     @FXML

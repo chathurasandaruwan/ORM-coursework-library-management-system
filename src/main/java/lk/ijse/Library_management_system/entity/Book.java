@@ -18,7 +18,7 @@ import java.util.List;
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @Column(name = "title")
     private String title;
@@ -38,4 +38,21 @@ public class Book {
 
     @OneToMany(mappedBy = "book")
     private List<Borrow> borrows = new ArrayList<>();
+
+    public Book(long id, String title, String author, int availabilityStatus, String generation, Branch branch) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.availabilityStatus = availabilityStatus;
+        this.generation = generation;
+        this.branch = branch;
+    }
+
+    public Book(String title, String author, int availabilityStatus, String generation, Branch branch) {
+        this.title = title;
+        this.author = author;
+        this.availabilityStatus = availabilityStatus;
+        this.generation = generation;
+        this.branch = branch;
+    }
 }

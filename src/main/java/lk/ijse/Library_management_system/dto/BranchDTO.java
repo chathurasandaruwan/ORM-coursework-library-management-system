@@ -1,4 +1,6 @@
 package lk.ijse.Library_management_system.dto;
+import lk.ijse.Library_management_system.entity.Branch;
+
 import java.time.LocalDate;
 
 public class BranchDTO {
@@ -23,8 +25,11 @@ public class BranchDTO {
     public long getId() {
         return id;
     }
+    public Branch toEntity(BranchDTO dto){
+        return new Branch(dto.getId(),dto.getAddress(),dto.getOpenedDate());
+    }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
