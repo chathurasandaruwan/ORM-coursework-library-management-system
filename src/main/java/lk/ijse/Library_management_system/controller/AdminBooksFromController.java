@@ -3,11 +3,7 @@ package lk.ijse.Library_management_system.controller;
 import com.jfoenix.controls.JFXComboBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import lk.ijse.Library_management_system.bo.custom.BookBO;
 import lk.ijse.Library_management_system.bo.custom.impl.BookBOImpl;
 import lk.ijse.Library_management_system.dto.BookDTO;
@@ -70,6 +66,8 @@ public class AdminBooksFromController {
         textStatus.clear();
         textGen.clear();
         textTitle.clear();
+        combBranch.setValue(null);
+        yearPiker.setValue(null);
 
 
     }
@@ -98,7 +96,8 @@ public class AdminBooksFromController {
        String title = textTitle.getText();
        boolean isSaved = bookBO.saveBook(new BookDTO(title,author,availabilityS,gen,branchDTO));
        if (isSaved){
-           System.out.println("Save success !!");
+           new Alert(Alert.AlertType.INFORMATION,"SAVE SUCCESS !!!").show();
+           resetAll();
        }
 
 
