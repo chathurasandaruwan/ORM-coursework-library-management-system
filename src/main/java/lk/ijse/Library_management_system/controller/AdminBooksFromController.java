@@ -142,7 +142,13 @@ public class AdminBooksFromController {
     }
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
-
+        long bookId = Long.parseLong(lblBookId.getText());
+        boolean isDelete = bookBO.deleteBook(bookId);
+        if (isDelete){
+            new Alert(Alert.AlertType.INFORMATION,"DELETE SUCCESS !!!").show();
+            loadAllBooks();
+            resetAll();
+        }
     }
 
     @FXML

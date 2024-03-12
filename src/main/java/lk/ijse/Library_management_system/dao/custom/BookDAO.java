@@ -11,4 +11,6 @@ public interface BookDAO extends SupperDAO {
     List<Book> getAll();
 
     boolean update(Book entity);
+
+    boolean delete(long id);
 }

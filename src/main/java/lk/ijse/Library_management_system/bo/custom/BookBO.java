@@ -15,4 +15,6 @@ public interface BookBO extends SupperBO {
     List<BookDTO> getAllBook();
 
     boolean updateBook(BookDTO dto);
+
+    boolean deleteBook(long id);
 }

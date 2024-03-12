@@ -46,5 +46,9 @@ public class BookBOImpl implements BookBO {
         BranchDTO branchDTO = new BranchDTO();
         return bookDAO.update(new Book(dto.getId(),dto.getTitle(), dto.getAuthor(), dto.getAvailabilityStatus(),dto.getGeneration(),branchDTO.toEntity(dto.getBranch())));
     }
+    @Override
+    public boolean deleteBook(long id){
+        return bookDAO.delete(id);
+    }
 
 }

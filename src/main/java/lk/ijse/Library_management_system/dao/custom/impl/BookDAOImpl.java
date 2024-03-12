@@ -36,4 +36,14 @@ public class BookDAOImpl implements BookDAO {
         session.close();
         return  true;
     }
+    @Override
+    public boolean delete(long id){
+        Session session =FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+        Book book = session.get(Book.class,id);
+        session.delete(book);
+        transaction.commit();
+        session.close();
+        return true;
+    }
 }
