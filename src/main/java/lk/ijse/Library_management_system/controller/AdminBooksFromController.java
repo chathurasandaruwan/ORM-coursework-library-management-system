@@ -73,6 +73,28 @@ public class AdminBooksFromController {
         resetAll();
         loadAllBooks();
         setvaluesFactory();
+
+        tblViwe.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue) ->{
+            if (newValue != null){
+                btnSave.setText("Update");
+                btnSave.setDisable(false);
+                btnDelete.setDisable(false);
+                textTitle.setDisable(false);
+                textGen.setDisable(false);
+                textStatus.setDisable(false);
+                textAuthor.setDisable(false);
+                yearPiker.setDisable(false);
+                combBranch.setDisable(false);
+
+                textTitle.setText(newValue.getTitle());
+                textAuthor.setText(newValue.getAuthor());
+                textGen.setText(newValue.getGeneration());
+                combBranch.setValue(newValue.getBranch());
+                textStatus.setText(String.valueOf(newValue.getAvailabilityStatus()));
+            }else {
+                btnSave.setText("Save");
+            }
+        });
     }
     private void setvaluesFactory() {
         columnId.setCellValueFactory(new PropertyValueFactory<>("id"));
