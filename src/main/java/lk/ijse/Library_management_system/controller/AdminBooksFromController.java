@@ -42,11 +42,21 @@ public class AdminBooksFromController {
 
     @FXML
     private DatePicker yearPiker;
+
     @FXML
     private JFXComboBox<String> combBranch;
+
+    @FXML
+    private Button btnAddNew;
+
     BookBO bookBO = new BookBOImpl();
+
     public void initialize() {
         setCombBranch();
+    }
+    @FXML
+    void btnAddNewOnAction(ActionEvent event) {
+
     }
     @FXML
     void btnDeleteOnAction(ActionEvent event) {

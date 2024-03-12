@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -28,16 +29,16 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lblBookId" layoutX="820.0" layoutY="19.0" text="01">
+      <Label fx:id="lblBookId" layoutX="820.0" layoutY="19.0">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Label>
       <Pane layoutX="15.0" layoutY="298.0" prefHeight="248.0" prefWidth="930.0" style="-fx-background-color: DCF1F5;">
          <children>
-            <TextField fx:id="textTitle" layoutX="51.0" layoutY="41.0" prefHeight="26.0" prefWidth="400.0" promptText="Title" />
-            <TextField fx:id="textAuthor" layoutX="480.0" layoutY="41.0" prefHeight="26.0" prefWidth="400.0" promptText="Author" />
-            <TextField fx:id="textStatus" layoutX="51.0" layoutY="111.0" prefHeight="26.0" prefWidth="400.0" promptText="Availability Status" />
+            <TextField fx:id="textTitle" layoutX="51.0" layoutY="61.0" prefHeight="26.0" prefWidth="400.0" promptText="Title" />
+            <TextField fx:id="textAuthor" layoutX="480.0" layoutY="61.0" prefHeight="26.0" prefWidth="400.0" promptText="Author" />
+            <TextField fx:id="textStatus" layoutX="51.0" layoutY="131.0" prefHeight="26.0" prefWidth="400.0" promptText="Availability Status" />
             <Button fx:id="btnDelete" layoutX="480.0" layoutY="180.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #C70039;" text="Delete" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
@@ -46,10 +47,15 @@
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></Button>
-            <DatePicker fx:id="yearPiker" layoutX="830.0" layoutY="111.0" onAction="#handleDatePickerAction" prefHeight="26.0" prefWidth="41.0" promptText="Gen" />
-            <TextField fx:id="textGen" layoutX="480.0" layoutY="111.0" prefHeight="26.0" prefWidth="376.0" promptText="Gen" />
+            <DatePicker fx:id="yearPiker" layoutX="830.0" layoutY="131.0" onAction="#handleDatePickerAction" prefHeight="26.0" prefWidth="41.0" promptText="Gen" />
+            <TextField fx:id="textGen" layoutX="480.0" layoutY="131.0" prefHeight="26.0" prefWidth="376.0" promptText="Gen" />
          </children>
       </Pane>
       <JFXComboBox fx:id="combBranch" layoutX="15.0" layoutY="6.0" prefHeight="26.0" prefWidth="238.0" promptText="Branch" />
+      <Button fx:id="btnAddNew" layoutX="34.0" layoutY="314.0" mnemonicParsing="false" onAction="#btnAddNewOnAction" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: lightblue;" text="+  Add New Book">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>
