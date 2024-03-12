@@ -86,6 +86,7 @@ public class AdminBooksFromController {
                 yearPiker.setDisable(false);
                 combBranch.setDisable(false);
 
+                lblBookId.setText(String.valueOf(newValue.getId()));
                 textTitle.setText(newValue.getTitle());
                 textAuthor.setText(newValue.getAuthor());
                 textGen.setText(newValue.getGeneration());
@@ -93,6 +94,7 @@ public class AdminBooksFromController {
                 textStatus.setText(String.valueOf(newValue.getAvailabilityStatus()));
             }else {
                 btnSave.setText("Save");
+                resetAll();
             }
         });
     }
@@ -115,15 +117,16 @@ public class AdminBooksFromController {
         textAuthor.setDisable(true);
         yearPiker.setDisable(true);
         combBranch.setDisable(true);
-
+        clearText();
+    }
+    public void clearText(){
         textAuthor.clear();
         textStatus.clear();
         textGen.clear();
         textTitle.clear();
         combBranch.setValue(null);
         yearPiker.setValue(null);
-
-
+        lblBookId.setText(null);
     }
     @FXML
     void btnAddNewOnAction(ActionEvent event) {
@@ -134,6 +137,7 @@ public class AdminBooksFromController {
         textAuthor.setDisable(false);
         yearPiker.setDisable(false);
         combBranch.setDisable(false);
+        clearText();
     }
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
@@ -151,6 +155,7 @@ public class AdminBooksFromController {
        boolean isSaved = bookBO.saveBook(new BookDTO(title,author,availabilityS,gen,branchDTO));
        if (isSaved){
            new Alert(Alert.AlertType.INFORMATION,"SAVE SUCCESS !!!").show();
+           loadAllBooks();
            resetAll();
        }
     }
@@ -185,6 +190,7 @@ public class AdminBooksFromController {
         }
     }
     public void loadAllBooks(){
+        tblViwe.getItems().clear();
         List<BookDTO> bookDTOS = bookBO.getAllBook();
         for (BookDTO dto : bookDTOS) {
             BranchDTO branchDTO = dto.getBranch();
