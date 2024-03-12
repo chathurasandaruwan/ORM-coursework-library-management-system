@@ -13,4 +13,6 @@ public interface BookBO extends SupperBO {
     boolean saveBook(BookDTO dto);
 
     List<BookDTO> getAllBook();
+
+    boolean updateBook(BookDTO dto);
 }

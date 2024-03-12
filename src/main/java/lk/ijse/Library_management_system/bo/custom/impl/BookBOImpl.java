@@ -41,5 +41,10 @@ public class BookBOImpl implements BookBO {
         }
         return bookDTOS;
     }
+    @Override
+    public boolean updateBook(BookDTO dto){
+        BranchDTO branchDTO = new BranchDTO();
+        return bookDAO.update(new Book(dto.getId(),dto.getTitle(), dto.getAuthor(), dto.getAvailabilityStatus(),dto.getGeneration(),branchDTO.toEntity(dto.getBranch())));
+    }
 
 }

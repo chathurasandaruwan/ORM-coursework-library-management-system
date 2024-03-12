@@ -119,10 +119,10 @@ public class AdminBranchFromController {
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
+        LocalDate opDate = OpenedDayPiker.getValue();
+        String address = textAddress.getText();
 //        save branch
         if ("Save".equals(btnSave.getText())){
-            LocalDate opDate = OpenedDayPiker.getValue();
-            String address = textAddress.getText();
             boolean isSaved = branchBO.saveBranch(new BranchDTO(address,opDate));
             if (isSaved){
                 new Alert(Alert.AlertType.INFORMATION,"SAVE SUCCESS !!!").show();
@@ -134,9 +134,6 @@ public class AdminBranchFromController {
 //        update branch
         else {
             long id = Long.parseLong(textId.getText());
-            String address = textAddress.getText();
-            LocalDate opDate = OpenedDayPiker.getValue();
-
             boolean isUpdate = branchBO.updateBranch(new BranchDTO(id,address,opDate));
             if (isUpdate){
                 new Alert(Alert.AlertType.INFORMATION,"UPDATE SUCCESS !!!").show();

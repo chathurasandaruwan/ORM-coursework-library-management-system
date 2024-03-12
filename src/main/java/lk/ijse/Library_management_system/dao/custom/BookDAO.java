@@ -9,4 +9,6 @@ public interface BookDAO extends SupperDAO {
     boolean save(Book entity);
 
     List<Book> getAll();
+
+    boolean update(Book entity);
 }

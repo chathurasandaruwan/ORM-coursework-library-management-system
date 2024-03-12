@@ -163,7 +163,13 @@ public class AdminBooksFromController {
            }
 //           update books
        }else {
-           System.out.println("update");
+           long bookId = Long.parseLong(lblBookId.getText());
+           boolean isUpdate = bookBO.updateBook(new BookDTO(bookId,title,author,availabilityS,gen,branchDTO));
+           if (isUpdate){
+               new Alert(Alert.AlertType.INFORMATION,"Update SUCCESS !!!").show();
+               loadAllBooks();
+               resetAll();
+           }
        }
     }
     public BranchDTO getBranchByAddress(String address){
