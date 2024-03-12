@@ -16,12 +16,12 @@
    <children>
       <TableView fx:id="tblViwe" layoutX="15.0" layoutY="40.0" prefHeight="258.0" prefWidth="930.0">
         <columns>
-          <TableColumn prefWidth="108.0" text="ID" />
-          <TableColumn prefWidth="181.0" text="Title" />
-            <TableColumn prefWidth="191.0" text="Author" />
-            <TableColumn minWidth="0.0" prefWidth="145.0" text="Availability Status" />
-            <TableColumn minWidth="0.0" prefWidth="154.0" text="GEN" />
-            <TableColumn minWidth="0.0" prefWidth="150.0" text="Branch" />
+          <TableColumn fx:id="columnId" prefWidth="108.0" text="ID" />
+          <TableColumn fx:id="columnTitle" prefWidth="181.0" text="Title" />
+            <TableColumn fx:id="columnAuthor" prefWidth="191.0" text="Author" />
+            <TableColumn fx:id="columnIdAStatus" minWidth="0.0" prefWidth="145.0" text="Availability Status" />
+            <TableColumn fx:id="columnGen" minWidth="0.0" prefWidth="154.0" text="GEN" />
+            <TableColumn fx:id="columnBranch" minWidth="0.0" prefWidth="150.0" text="Branch" />
         </columns>
       </TableView>
       <Label layoutX="717.0" layoutY="19.0" text="Book ID :">

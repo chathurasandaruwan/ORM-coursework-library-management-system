@@ -46,6 +46,24 @@ public class AdminBooksFromController {
     @FXML
     private Button btnAddNew;
 
+    @FXML
+    private TableColumn<?, ?> columnId;
+
+    @FXML
+    private TableColumn<?, ?> columnTitle;
+
+    @FXML
+    private TableColumn<?, ?> columnAuthor;
+
+    @FXML
+    private TableColumn<?, ?> columnIdAStatus;
+
+    @FXML
+    private TableColumn<?, ?> columnGen;
+
+    @FXML
+    private TableColumn<?, ?> columnBranch;
+
     BookBO bookBO = new BookBOImpl();
 
     public void initialize() {
