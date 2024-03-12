@@ -51,6 +51,7 @@ public class AdminBooksFromController {
     public void initialize() {
         setCombBranch();
         resetAll();
+        loadAllBooks();
     }
     public void resetAll(){
         btnSave.setDisable(true);
@@ -99,10 +100,6 @@ public class AdminBooksFromController {
            new Alert(Alert.AlertType.INFORMATION,"SAVE SUCCESS !!!").show();
            resetAll();
        }
-
-
-
-
     }
     public BranchDTO getBranchByAddress(String address){
         List<BranchDTO> branches = bookBO.getAllBranch();
@@ -132,6 +129,13 @@ public class AdminBooksFromController {
         List<BranchDTO> branches = bookBO.getAllBranch();
         for (BranchDTO branch : branches) {
             combBranch.getItems().add(branch.getAddress());
+        }
+    }
+    public void loadAllBooks(){
+        List<BookDTO> bookDTOS = bookBO.getAllBook();
+        for (BookDTO dto : bookDTOS) {
+            BranchDTO branchDTO = dto.getBranch();
+            System.out.println(dto.getId());
         }
     }
 

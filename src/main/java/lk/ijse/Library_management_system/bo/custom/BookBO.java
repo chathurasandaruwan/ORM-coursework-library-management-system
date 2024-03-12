@@ -11,4 +11,6 @@ public interface BookBO extends SupperBO {
     List<BranchDTO> getAllBranch();
 
     boolean saveBook(BookDTO dto);
+
+    List<BookDTO> getAllBook();
 }
