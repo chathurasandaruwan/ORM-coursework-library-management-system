@@ -4,10 +4,12 @@ import com.jfoenix.controls.JFXComboBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.Library_management_system.bo.custom.BookBO;
 import lk.ijse.Library_management_system.bo.custom.impl.BookBOImpl;
 import lk.ijse.Library_management_system.dto.BookDTO;
 import lk.ijse.Library_management_system.dto.BranchDTO;
+import lk.ijse.Library_management_system.tdm.BookTM;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -15,7 +17,7 @@ import java.util.List;
 public class AdminBooksFromController {
 
     @FXML
-    private TableView<?> tblViwe;
+    private TableView<BookTM> tblViwe;
 
     @FXML
     private Label lblBookId;
@@ -70,6 +72,17 @@ public class AdminBooksFromController {
         setCombBranch();
         resetAll();
         loadAllBooks();
+        setvaluesFactory();
+    }
+    private void setvaluesFactory() {
+        columnId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        columnTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
+        columnAuthor.setCellValueFactory(new PropertyValueFactory<>("author"));
+        columnIdAStatus.setCellValueFactory(new PropertyValueFactory<>("availabilityStatus"));
+        columnGen.setCellValueFactory(new PropertyValueFactory<>("generation"));
+        columnBranch.setCellValueFactory(new PropertyValueFactory<>("branch"));
+
+
     }
     public void resetAll(){
         btnSave.setDisable(true);
@@ -153,7 +166,7 @@ public class AdminBooksFromController {
         List<BookDTO> bookDTOS = bookBO.getAllBook();
         for (BookDTO dto : bookDTOS) {
             BranchDTO branchDTO = dto.getBranch();
-            System.out.println(dto.getId());
+            tblViwe.getItems().add(new BookTM(dto.getId(),dto.getTitle(),dto.getAuthor(),dto.getAvailabilityStatus(),dto.getGeneration(),branchDTO.getAddress()));
         }
     }
 
