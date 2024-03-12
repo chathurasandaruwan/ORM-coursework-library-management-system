@@ -137,6 +137,7 @@ public class AdminBooksFromController {
         textAuthor.setDisable(false);
         yearPiker.setDisable(false);
         combBranch.setDisable(false);
+        tblViwe.getSelectionModel().clearSelection();
         clearText();
     }
     @FXML
@@ -152,11 +153,17 @@ public class AdminBooksFromController {
        int availabilityS = Integer.parseInt(textStatus.getText());
        String gen = textGen.getText();
        String title = textTitle.getText();
-       boolean isSaved = bookBO.saveBook(new BookDTO(title,author,availabilityS,gen,branchDTO));
-       if (isSaved){
-           new Alert(Alert.AlertType.INFORMATION,"SAVE SUCCESS !!!").show();
-           loadAllBooks();
-           resetAll();
+//       save book
+       if (btnSave.getText().equals("Save")){
+           boolean isSaved = bookBO.saveBook(new BookDTO(title,author,availabilityS,gen,branchDTO));
+           if (isSaved){
+               new Alert(Alert.AlertType.INFORMATION,"SAVE SUCCESS !!!").show();
+               loadAllBooks();
+               resetAll();
+           }
+//           update books
+       }else {
+           System.out.println("update");
        }
     }
     public BranchDTO getBranchByAddress(String address){
