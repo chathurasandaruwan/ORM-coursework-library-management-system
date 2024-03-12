@@ -53,6 +53,24 @@ public class AdminBooksFromController {
 
     public void initialize() {
         setCombBranch();
+        resetAll();
+    }
+    public void resetAll(){
+        btnSave.setDisable(true);
+        btnDelete.setDisable(true);
+        textTitle.setDisable(true);
+        textGen.setDisable(true);
+        textStatus.setDisable(true);
+        textAuthor.setDisable(true);
+        yearPiker.setDisable(true);
+        combBranch.setDisable(true);
+
+        textAuthor.clear();
+        textStatus.clear();
+        textGen.clear();
+        textTitle.clear();
+
+
     }
     @FXML
     void btnAddNewOnAction(ActionEvent event) {
