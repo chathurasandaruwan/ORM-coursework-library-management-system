@@ -50,8 +50,19 @@ public class BorrowBOImpl implements BorrowBO {
         Transaction transaction = session.beginTransaction();
         UserDTO userDTO = dto.getUser();
         BookDTO bookDTO = dto.getBook();
-        borrowDAO.save(new Borrow(dto.getBorrowedDate(),dto.getReturningDate(),userDTO.toEntity(),bookDTO.toEntity()));
-        transaction.commit();
-        return true;
+
+        boolean isBorrowedSaved = borrowDAO.save(new Borrow(dto.getBorrowedDate(),dto.getReturningDate(),userDTO.toEntity(),bookDTO.toEntity()));
+        if (isBorrowedSaved){
+            int newBookCount= dto.getBook().getAvailabilityStatus()-1;
+            Book newBooks=dto.getBook().toEntity();
+            newBooks.setAvailabilityStatus(newBookCount);
+
+            boolean isUpdateBookCount = bookDAO.update(newBooks);
+            if (isUpdateBookCount){
+                transaction.commit();
+                return true;
+            }
+        }
+        return false;
     }
 }
