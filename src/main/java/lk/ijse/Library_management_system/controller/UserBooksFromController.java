@@ -62,6 +62,9 @@ public class UserBooksFromController {
     private Label lblStatus;
 
     @FXML
+    private Label lblBranch;
+
+    @FXML
     private Button btnReturn;
 
     @FXML
@@ -76,7 +79,7 @@ public class UserBooksFromController {
         setvaluesFactory();
     }
     public void setCombSearchValues(){
-        CombSearchValues.setItems(FXCollections.observableArrayList("Name", "Branch"));
+        CombSearchValues.setItems(FXCollections.observableArrayList("Name", "Branch","All"));
     }
 
     private void setvaluesFactory() {
@@ -100,7 +103,22 @@ public class UserBooksFromController {
     }
     @FXML
     void btnSearchOnAction(ActionEvent event) {
-
+        String type = CombSearchValues.getValue();
+        if (type.equals("Name")){
+            String name = textSearch.getText();
+            List<BookDTO> bookDTOS = borrowBO.getAllBook();
+            for (BookDTO dto : bookDTOS) {
+                if (name.equals(dto.getTitle())){
+                    BranchDTO branchDTO =dto.getBranch();
+                    lblBranch.setText(branchDTO.getAddress());
+                    lblBookTitle.setText(dto.getTitle());
+                   lblAthorName.setText(dto.getAuthor());
+                   lblGen.setText(dto.getGeneration());
+                   lblBookId.setText(String.valueOf(dto.getId()));
+                   lblStatus.setText(String.valueOf(dto.getAvailabilityStatus()));
+                }
+            }
+        }
     }
     public void loadAllBooks(){
         tblBookList.getItems().clear();
