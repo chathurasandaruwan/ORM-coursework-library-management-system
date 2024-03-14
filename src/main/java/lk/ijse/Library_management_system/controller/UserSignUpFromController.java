@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.Library_management_system.bo.BOFactory;
 import lk.ijse.Library_management_system.bo.custom.UserBO;
 import lk.ijse.Library_management_system.bo.custom.impl.UserBOImpl;
 import lk.ijse.Library_management_system.dto.UserDTO;
@@ -32,7 +33,7 @@ public class UserSignUpFromController {
     private TextField textEmail;
     @FXML
     private Label lblUserNameWarning;
-    UserBO userBO = new UserBOImpl();
+    UserBO userBO = (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.USER);
 
     @FXML
     void btnSignInOnAction(ActionEvent event) throws IOException {
