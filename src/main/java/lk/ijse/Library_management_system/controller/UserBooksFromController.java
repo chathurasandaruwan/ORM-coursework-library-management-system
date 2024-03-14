@@ -128,6 +128,8 @@ public class UserBooksFromController {
                     tblBookList.getItems().add(new BookTM(dto.getId(),dto.getTitle(),dto.getAuthor(),dto.getAvailabilityStatus(),dto.getGeneration(),branchDTO.getAddress()));
                 }
             }
+        }else if (type.equals("All")){
+            loadAllBooks();
         }
     }
     public void loadAllBooks(){
