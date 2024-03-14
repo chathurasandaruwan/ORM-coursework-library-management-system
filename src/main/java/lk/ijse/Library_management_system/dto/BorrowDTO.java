@@ -13,9 +13,15 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class BorrowDTO {
     private int id;
-    private Book book;
-    private User user;
+    private BookDTO book;
+    private UserDTO user;
     private LocalDate borrowedDate;
     private LocalDate returningDate;
 
+    public BorrowDTO(BookDTO book, UserDTO user, LocalDate borrowedDate, LocalDate returningDate) {
+        this.book = book;
+        this.user = user;
+        this.borrowedDate = borrowedDate;
+        this.returningDate = returningDate;
+    }
 }

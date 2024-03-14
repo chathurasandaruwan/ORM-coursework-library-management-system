@@ -30,7 +30,7 @@ public class BookBOImpl implements BookBO {
     @Override
     public  boolean saveBook(BookDTO dto){
         BranchDTO branchDTO = new BranchDTO();
-        return bookDAO.save(new Book(dto.getTitle(), dto.getAuthor(), dto.getAvailabilityStatus(),dto.getGeneration(),branchDTO.toEntity(dto.getBranch())));
+        return bookDAO.save(new Book(dto.getTitle(), dto.getAuthor(), dto.getAvailabilityStatus(),dto.getGeneration(),branchDTO.toEntity(dto.getBranchDTO())));
     }
     @Override
     public List<BookDTO> getAllBook(){
@@ -45,7 +45,7 @@ public class BookBOImpl implements BookBO {
     @Override
     public boolean updateBook(BookDTO dto){
         BranchDTO branchDTO = new BranchDTO();
-        return bookDAO.update(new Book(dto.getId(),dto.getTitle(), dto.getAuthor(), dto.getAvailabilityStatus(),dto.getGeneration(),branchDTO.toEntity(dto.getBranch())));
+        return bookDAO.update(new Book(dto.getId(),dto.getTitle(), dto.getAuthor(), dto.getAvailabilityStatus(),dto.getGeneration(),branchDTO.toEntity(dto.getBranchDTO())));
     }
     @Override
     public boolean deleteBook(long id){

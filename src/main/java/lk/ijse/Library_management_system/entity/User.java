@@ -1,4 +1,5 @@
 package lk.ijse.Library_management_system.entity;
+import lk.ijse.Library_management_system.dto.UserDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

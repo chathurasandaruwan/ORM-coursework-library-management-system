@@ -213,7 +213,7 @@ public class AdminBooksFromController {
         tblViwe.getItems().clear();
         List<BookDTO> bookDTOS = bookBO.getAllBook();
         for (BookDTO dto : bookDTOS) {
-            BranchDTO branchDTO = dto.getBranch();
+            BranchDTO branchDTO = dto.getBranchDTO();
             tblViwe.getItems().add(new BookTM(dto.getId(),dto.getTitle(),dto.getAuthor(),dto.getAvailabilityStatus(),dto.getGeneration(),branchDTO.getAddress()));
         }
     }

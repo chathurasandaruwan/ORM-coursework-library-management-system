@@ -10,6 +10,7 @@ import lk.ijse.Library_management_system.bo.custom.BookBO;
 import lk.ijse.Library_management_system.bo.custom.BorrowBO;
 import lk.ijse.Library_management_system.bo.custom.impl.BorrowBOImpl;
 import lk.ijse.Library_management_system.dto.BookDTO;
+import lk.ijse.Library_management_system.dto.BorrowDTO;
 import lk.ijse.Library_management_system.dto.BranchDTO;
 import lk.ijse.Library_management_system.dto.UserDTO;
 import lk.ijse.Library_management_system.tdm.BookTM;
@@ -135,13 +136,16 @@ public class UserBooksFromController {
         UserDTO user= UserSignInFromController.userDTO;
         long bookId = Long.parseLong(lblBookId.getText());
         BookDTO book=getBooksById(bookId);
+        BranchDTO branchDTO =getBranchByAddress(lblBranch.getText());
+        book.setBranchDTO(branchDTO);
         LocalDate borrowedDate = LocalDate.parse(lblDate.getText());
         LocalDate returnedDate = borrowedDate.plusDays(7);
-
-        System.out.println(borrowedDate);
-        System.out.println(returnedDate);
+        boolean isSaved= borrowBO.saveBorrow(new BorrowDTO(book,user,borrowedDate,returnedDate));
+        if (isSaved){
+            System.out.println("Save Unaaaa");
+        }
     }
-   /* public BranchDTO getBranchByAddress(String address){
+    public BranchDTO getBranchByAddress(String address){
         List<BranchDTO> branches = borrowBO.getAllBranch();
         BranchDTO branchDTO = new BranchDTO();
         for (BranchDTO branch : branches) {
@@ -151,7 +155,8 @@ public class UserBooksFromController {
                 branchDTO.setOpenedDate(branch.getOpenedDate());
             }
         }return branchDTO;
-    }*/
+    }
+
     public BookDTO getBooksById(long id){
         List<BookDTO> bookDTOS = borrowBO.getAllBook();
         BookDTO bookDTO = new BookDTO();
@@ -160,7 +165,8 @@ public class UserBooksFromController {
                 bookDTO.setId(dto.getId());
                 bookDTO.setTitle(dto.getTitle());
                 bookDTO.setAuthor(dto.getAuthor());
-                bookDTO.setBranch(new BranchDTO().toEntity(dto.getBranch()));
+//                bookDTO.setBranch(new BranchDTO().toEntity(dto.getBranch()));
+
                 bookDTO.setGeneration(dto.getGeneration());
                 bookDTO.setAvailabilityStatus(dto.getAvailabilityStatus());
             }
@@ -181,7 +187,7 @@ public class UserBooksFromController {
                 tblBookList.getItems().clear();
                 for (BookDTO dto : bookDTOS) {
                     if (name.equals(dto.getTitle())) {
-                        BranchDTO branchDTO = dto.getBranch();
+                        BranchDTO branchDTO = dto.getBranchDTO();
                         tblBookList.getItems().add(new BookTM(dto.getId(), dto.getTitle(), dto.getAuthor(), dto.getAvailabilityStatus(), dto.getGeneration(), branchDTO.getAddress()));
                         lblBranch.setText(branchDTO.getAddress());
                         lblBookTitle.setText(dto.getTitle());
@@ -202,7 +208,7 @@ public class UserBooksFromController {
                 lblSearchError.setOpacity(100);
                 String address = textSearch.getText();
                 for (BookDTO dto : bookDTOS) {
-                    BranchDTO branchDTO = dto.getBranch();
+                    BranchDTO branchDTO = dto.getBranchDTO();
                     if (address.equals(branchDTO.getAddress())) {
                         tblBookList.getItems().add(new BookTM(dto.getId(), dto.getTitle(), dto.getAuthor(), dto.getAvailabilityStatus(), dto.getGeneration(), branchDTO.getAddress()));
                         lblSearchError.setOpacity(0);
@@ -225,9 +231,13 @@ public class UserBooksFromController {
         tblBookList.getItems().clear();
         List<BookDTO> bookDTOS = borrowBO.getAllBook();
         for (BookDTO dto : bookDTOS) {
-            BranchDTO branchDTO = dto.getBranch();
+            BranchDTO branchDTO = dto.getBranchDTO();
             tblBookList.getItems().add(new BookTM(dto.getId(),dto.getTitle(),dto.getAuthor(),dto.getAvailabilityStatus(),dto.getGeneration(),branchDTO.getAddress()));
         }
     }
 
 }
+
+
+
+

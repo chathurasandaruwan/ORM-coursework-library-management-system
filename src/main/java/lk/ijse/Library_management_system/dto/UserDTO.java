@@ -1,5 +1,6 @@
 package lk.ijse.Library_management_system.dto;
 
+import lk.ijse.Library_management_system.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,5 +21,9 @@ public class UserDTO {
         this.name = name;
         this.email = email;
         this.password = password;
+    }
+    public User toEntity(){
+        User user= new User(id,name,email,password);
+        return user;
     }
 }

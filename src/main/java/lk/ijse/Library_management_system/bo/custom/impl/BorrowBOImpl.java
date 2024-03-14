@@ -10,9 +10,11 @@ import lk.ijse.Library_management_system.dao.custom.impl.BorrowDAOImpl;
 import lk.ijse.Library_management_system.dto.BookDTO;
 import lk.ijse.Library_management_system.dto.BorrowDTO;
 import lk.ijse.Library_management_system.dto.BranchDTO;
+import lk.ijse.Library_management_system.dto.UserDTO;
 import lk.ijse.Library_management_system.entity.Book;
 import lk.ijse.Library_management_system.entity.Borrow;
 import lk.ijse.Library_management_system.entity.Branch;
+import lk.ijse.Library_management_system.entity.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -46,7 +48,9 @@ public class BorrowBOImpl implements BorrowBO {
     public boolean saveBorrow(BorrowDTO dto){
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        borrowDAO.save(new Borrow(dto.getBorrowedDate(),dto.getReturningDate(),dto.getUser(),dto.getBook()));
+        UserDTO userDTO = dto.getUser();
+        BookDTO bookDTO = dto.getBook();
+        borrowDAO.save(new Borrow(dto.getBorrowedDate(),dto.getReturningDate(),userDTO.toEntity(),bookDTO.toEntity()));
         transaction.commit();
         return true;
     }

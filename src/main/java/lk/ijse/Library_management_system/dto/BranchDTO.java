@@ -28,6 +28,9 @@ public class BranchDTO {
     public Branch toEntity(BranchDTO dto){
         return new Branch(dto.getId(),dto.getAddress(),dto.getOpenedDate());
     }
+    public  Branch ToEntity(){
+        return new Branch(id,address,openedDate);
+    }
 
     public void setId(long id) {
         this.id = id;
