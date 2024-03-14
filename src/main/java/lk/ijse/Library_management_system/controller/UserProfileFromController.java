@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import lk.ijse.Library_management_system.bo.BOFactory;
 import lk.ijse.Library_management_system.bo.custom.UserBO;
 import lk.ijse.Library_management_system.bo.custom.impl.UserBOImpl;
 import lk.ijse.Library_management_system.dto.UserDTO;
@@ -47,7 +48,7 @@ public class UserProfileFromController {
 
     @FXML
     private Label lblWarningPassword2;
-    UserBO userBO = new UserBOImpl();
+    UserBO userBO = (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.USER);
     public void initialize() {
         textNewPassword.setDisable(true);
         textConfirmPassword.setDisable(true);
