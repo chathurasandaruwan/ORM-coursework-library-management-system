@@ -104,9 +104,10 @@ public class UserBooksFromController {
     @FXML
     void btnSearchOnAction(ActionEvent event) {
         String type = CombSearchValues.getValue();
+        List<BookDTO> bookDTOS = borrowBO.getAllBook();
         if (type.equals("Name")){
             String name = textSearch.getText();
-            List<BookDTO> bookDTOS = borrowBO.getAllBook();
+//            List<BookDTO> bookDTOS = borrowBO.getAllBook();
             for (BookDTO dto : bookDTOS) {
                 if (name.equals(dto.getTitle())){
                     BranchDTO branchDTO =dto.getBranch();
@@ -116,6 +117,15 @@ public class UserBooksFromController {
                    lblGen.setText(dto.getGeneration());
                    lblBookId.setText(String.valueOf(dto.getId()));
                    lblStatus.setText(String.valueOf(dto.getAvailabilityStatus()));
+                }
+            }
+        }else if (type.equals("Branch")){
+            tblBookList.getItems().clear();
+            String address = textSearch.getText();
+            for (BookDTO dto : bookDTOS) {
+                BranchDTO branchDTO =dto.getBranch();
+                if (address.equals(branchDTO.getAddress())){
+                    tblBookList.getItems().add(new BookTM(dto.getId(),dto.getTitle(),dto.getAuthor(),dto.getAvailabilityStatus(),dto.getGeneration(),branchDTO.getAddress()));
                 }
             }
         }
