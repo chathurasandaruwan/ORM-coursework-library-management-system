@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lk.ijse.Library_management_system.bo.BOFactory;
 import lk.ijse.Library_management_system.bo.custom.BookBO;
 import lk.ijse.Library_management_system.bo.custom.impl.BookBOImpl;
 import lk.ijse.Library_management_system.dto.BookDTO;
@@ -66,7 +67,7 @@ public class AdminBooksFromController {
     @FXML
     private TableColumn<?, ?> columnBranch;
 
-    BookBO bookBO = new BookBOImpl();
+    BookBO bookBO = (BookBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.BOOK);
 
     public void initialize() {
         setCombBranch();
