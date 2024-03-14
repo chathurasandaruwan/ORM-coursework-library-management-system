@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lk.ijse.Library_management_system.bo.BOFactory;
 import lk.ijse.Library_management_system.bo.custom.BranchBO;
 import lk.ijse.Library_management_system.bo.custom.impl.BranchBOImpl;
 import lk.ijse.Library_management_system.dto.BranchDTO;
@@ -46,7 +47,7 @@ public class AdminBranchFromController {
 
     @FXML
     private TableColumn<BranchTM, LocalDate> columnOpenDate;
-    BranchBO branchBO = new BranchBOImpl();
+    BranchBO branchBO = (BranchBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.BRANCH);
     public void initialize() {
 
         setvaluesFactory();
