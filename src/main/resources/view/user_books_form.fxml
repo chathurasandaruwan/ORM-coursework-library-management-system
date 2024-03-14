@@ -30,11 +30,12 @@
       </Pane>
       <TableView fx:id="tblBookList" layoutX="186.0" layoutY="60.0" prefHeight="221.0" prefWidth="762.0">
         <columns>
-          <TableColumn prefWidth="95.0" text="ID" />
-          <TableColumn prefWidth="194.0" text="Title" />
-            <TableColumn prefWidth="180.0" text="Author" />
-            <TableColumn prefWidth="136.0" text="Avalablity Status" />
-            <TableColumn prefWidth="131.0" text="Gen" />
+          <TableColumn fx:id="columnId" prefWidth="57.0" text="ID" />
+          <TableColumn fx:id="columnTitle" prefWidth="124.0" text="Title" />
+            <TableColumn fx:id="columnAuthor" prefWidth="114.0" text="Author" />
+            <TableColumn fx:id="columnAStatus" prefWidth="135.0" text="Avalablity Status" />
+            <TableColumn fx:id="columnGen" prefWidth="143.0" text="Gen" />
+            <TableColumn fx:id="columnBranch" prefWidth="183.0" text="Branch" />
         </columns>
       </TableView>
       <Pane layoutX="186.0" layoutY="294.0" prefHeight="259.0" prefWidth="762.0" style="-fx-background-color: DCF1F5;">
@@ -69,7 +70,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <ComboBox fx:id="CombSearchValues" layoutX="121.0" layoutY="14.0" prefHeight="26.0" prefWidth="68.0" />
+            <ComboBox fx:id="CombSearchValues" layoutX="93.0" layoutY="14.0" opacity="0.5" prefHeight="26.0" prefWidth="96.0" promptText="Name" />
             <Label layoutX="156.0" layoutY="237.0" text="You need return borrowed books within 07 days after borrowing.">
                <font>
                   <Font name="System Bold" size="12.0" />
