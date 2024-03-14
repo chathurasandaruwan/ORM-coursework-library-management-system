@@ -1,72 +1,22 @@
 package lk.ijse.Library_management_system.dto;
 
-import java.time.LocalDate;
+import lk.ijse.Library_management_system.entity.Book;
+import lk.ijse.Library_management_system.entity.Branch;
+import lk.ijse.Library_management_system.entity.User;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class BorrowDTO {
     private int id;
-    private int bookId;
-    private int userId;
-    private int branchId;
+    private Book book;
+    private User user;
+    private Branch branch;
     private LocalDate borrowedDate;
     private LocalDate returningDate;
 
-    public BorrowDTO() {
-    }
-
-    public BorrowDTO(int id, int bookId, int userId, int branchId, LocalDate borrowedDate, LocalDate returningDate) {
-        this.id = id;
-        this.bookId = bookId;
-        this.userId = userId;
-        this.branchId = branchId;
-        this.borrowedDate = borrowedDate;
-        this.returningDate = returningDate;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getBookId() {
-        return bookId;
-    }
-
-    public void setBookId(int bookId) {
-        this.bookId = bookId;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public int getBranchId() {
-        return branchId;
-    }
-
-    public void setBranchId(int branchId) {
-        this.branchId = branchId;
-    }
-
-    public LocalDate getBorrowedDate() {
-        return borrowedDate;
-    }
-
-    public void setBorrowedDate(LocalDate borrowedDate) {
-        this.borrowedDate = borrowedDate;
-    }
-
-    public LocalDate getReturningDate() {
-        return returningDate;
-    }
-
-    public void setReturningDate(LocalDate returningDate) {
-        this.returningDate = returningDate;
-    }
 }
