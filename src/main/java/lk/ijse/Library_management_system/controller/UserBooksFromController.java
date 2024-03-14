@@ -68,7 +68,11 @@ public class UserBooksFromController {
     private Button btnReturn;
 
     @FXML
+    private Label lblSearchError;
+    @FXML
     private Button btnBorrow;
+    @FXML
+    private Button btnSearch;
 
     @FXML
     private Label lblDate;
@@ -77,6 +81,9 @@ public class UserBooksFromController {
         setCombSearchValues();
         loadAllBooks();
         setvaluesFactory();
+        textSearch.setOnAction((ActionEvent event) -> {
+            btnSearch.fire();
+        });
     }
     public void setCombSearchValues(){
         CombSearchValues.setItems(FXCollections.observableArrayList("Name", "Branch","All"));
@@ -105,32 +112,41 @@ public class UserBooksFromController {
     void btnSearchOnAction(ActionEvent event) {
         String type = CombSearchValues.getValue();
         List<BookDTO> bookDTOS = borrowBO.getAllBook();
-        if (type.equals("Name")){
-            String name = textSearch.getText();
-//            List<BookDTO> bookDTOS = borrowBO.getAllBook();
-            for (BookDTO dto : bookDTOS) {
-                if (name.equals(dto.getTitle())){
-                    BranchDTO branchDTO =dto.getBranch();
-                    lblBranch.setText(branchDTO.getAddress());
-                    lblBookTitle.setText(dto.getTitle());
-                   lblAthorName.setText(dto.getAuthor());
-                   lblGen.setText(dto.getGeneration());
-                   lblBookId.setText(String.valueOf(dto.getId()));
-                   lblStatus.setText(String.valueOf(dto.getAvailabilityStatus()));
+        if (type!=null) {
+            if (type.equals("Name")) {
+                String name = textSearch.getText();
+                for (BookDTO dto : bookDTOS) {
+                    if (name.equals(dto.getTitle())) {
+                        BranchDTO branchDTO = dto.getBranch();
+                        lblBranch.setText(branchDTO.getAddress());
+                        lblBookTitle.setText(dto.getTitle());
+                        lblAthorName.setText(dto.getAuthor());
+                        lblGen.setText(dto.getGeneration());
+                        lblBookId.setText(String.valueOf(dto.getId()));
+                        lblStatus.setText(String.valueOf(dto.getAvailabilityStatus()));
+                        lblSearchError.setText("");
+                    }else {
+//                        new Alert(Alert.AlertType.ERROR,"Can't Find , Please try again !!").show();
+                        lblSearchError.setText("Can't Find , Please try again !!!");
+                    }
                 }
-            }
-        }else if (type.equals("Branch")){
-            tblBookList.getItems().clear();
-            String address = textSearch.getText();
-            for (BookDTO dto : bookDTOS) {
-                BranchDTO branchDTO =dto.getBranch();
-                if (address.equals(branchDTO.getAddress())){
-                    tblBookList.getItems().add(new BookTM(dto.getId(),dto.getTitle(),dto.getAuthor(),dto.getAvailabilityStatus(),dto.getGeneration(),branchDTO.getAddress()));
+            } else if (type.equals("Branch")) {
+                tblBookList.getItems().clear();
+                String address = textSearch.getText();
+                for (BookDTO dto : bookDTOS) {
+                    BranchDTO branchDTO = dto.getBranch();
+                    if (address.equals(branchDTO.getAddress())) {
+                        tblBookList.getItems().add(new BookTM(dto.getId(), dto.getTitle(), dto.getAuthor(), dto.getAvailabilityStatus(), dto.getGeneration(), branchDTO.getAddress()));
+                    }else {
+//                        new Alert(Alert.AlertType.ERROR,"Can't Find , Please try again !!").show();
+                        lblSearchError.setText("Can't Find , Please try again !!!");
+                    }
                 }
+            } else if (type.equals("All")) {
+                loadAllBooks();
             }
-        }else if (type.equals("All")){
-            loadAllBooks();
-        }
+        }else {   new Alert(Alert.AlertType.ERROR,"Please select search type").show();}
+
     }
     public void loadAllBooks(){
         tblBookList.getItems().clear();
