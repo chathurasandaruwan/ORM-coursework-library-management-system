@@ -78,6 +78,7 @@ public class UserBooksFromController {
     private Label lblDate;
     BorrowBO borrowBO = new BorrowBOImpl();
     public void initialize() {
+        resetAll();
         setCombSearchValues();
         loadAllBooks();
         setvaluesFactory();
@@ -93,8 +94,19 @@ public class UserBooksFromController {
                 lblGen.setText(newValue.getGeneration());
                 lblBookId.setText(String.valueOf(newValue.getId()));
                 lblStatus.setText(String.valueOf(newValue.getAvailabilityStatus()));
+            }else {
+                resetAll();
             }
         });
+    }
+    public void resetAll(){
+        lblBranch.setText("");
+        lblBookTitle.setText("");
+        lblAthorName.setText("");
+        lblGen.setText("");
+        lblBookId.setText("");
+        lblStatus.setText("");
+        tblBookList.getSelectionModel().clearSelection();
     }
     public void setCombSearchValues(){
         CombSearchValues.setItems(FXCollections.observableArrayList("Name", "Branch","All"));
@@ -126,9 +138,9 @@ public class UserBooksFromController {
         if (type!=null) {
             if (type.equals("Name")) {
                 String name = textSearch.getText();
+                tblBookList.getItems().clear();
                 for (BookDTO dto : bookDTOS) {
                     if (name.equals(dto.getTitle())) {
-                        tblBookList.getItems().clear();
                         BranchDTO branchDTO = dto.getBranch();
                         tblBookList.getItems().add(new BookTM(dto.getId(), dto.getTitle(), dto.getAuthor(), dto.getAvailabilityStatus(), dto.getGeneration(), branchDTO.getAddress()));
                         lblBranch.setText(branchDTO.getAddress());
@@ -138,14 +150,13 @@ public class UserBooksFromController {
                         lblBookId.setText(String.valueOf(dto.getId()));
                         lblStatus.setText(String.valueOf(dto.getAvailabilityStatus()));
                         lblSearchError.setText("");
-
                     }else {
 //                        new Alert(Alert.AlertType.ERROR,"Can't Find , Please try again !!").show();
                         if (lblBookId.getText() == null || lblBookId.getText().isEmpty()) {
                             lblSearchError.setText("Can't Find, Please try again!!!");
                         }
                     }
-                }
+                }textSearch.setText("");
             } else if (type.equals("Branch")) {
                 tblBookList.getItems().clear();
                 lblSearchError.setOpacity(100);
@@ -161,8 +172,11 @@ public class UserBooksFromController {
                         lblSearchError.setText("Can't Find , Please try again !!!");
                     }
                 }
+                resetAll();
             } else if (type.equals("All")) {
+                lblSearchError.setText("");
                 loadAllBooks();
+                resetAll();
             }
         }else {   new Alert(Alert.AlertType.ERROR,"Please select search type").show();}
 
