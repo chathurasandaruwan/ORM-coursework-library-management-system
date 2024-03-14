@@ -15,7 +15,6 @@ public class BorrowDTO {
     private int id;
     private Book book;
     private User user;
-    private Branch branch;
     private LocalDate borrowedDate;
     private LocalDate returningDate;
 

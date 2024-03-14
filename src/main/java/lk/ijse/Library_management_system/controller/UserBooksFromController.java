@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.Library_management_system.bo.BOFactory;
+import lk.ijse.Library_management_system.bo.custom.BookBO;
 import lk.ijse.Library_management_system.bo.custom.BorrowBO;
 import lk.ijse.Library_management_system.bo.custom.impl.BorrowBOImpl;
 import lk.ijse.Library_management_system.dto.BookDTO;
@@ -13,6 +14,7 @@ import lk.ijse.Library_management_system.dto.BranchDTO;
 import lk.ijse.Library_management_system.dto.UserDTO;
 import lk.ijse.Library_management_system.tdm.BookTM;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class UserBooksFromController {
@@ -84,6 +86,7 @@ public class UserBooksFromController {
         setCombSearchValues();
         loadAllBooks();
         setvaluesFactory();
+        setDate();
         textSearch.setOnAction((ActionEvent event) -> {
             btnSearch.fire();
         });
@@ -113,6 +116,9 @@ public class UserBooksFromController {
     public void setCombSearchValues(){
         CombSearchValues.setItems(FXCollections.observableArrayList("Name", "Branch","All"));
     }
+    private void setDate() {
+        lblDate.setText(String.valueOf(LocalDate.now()));
+    }
 
     private void setvaluesFactory() {
         columnId.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -126,9 +132,39 @@ public class UserBooksFromController {
     }
     @FXML
     void btnBorrowOnAction(ActionEvent event) {
-        UserDTO users= UserSignInFromController.userDTO;
+        UserDTO user= UserSignInFromController.userDTO;
+        long bookId = Long.parseLong(lblBookId.getText());
+        BookDTO book=getBooksById(bookId);
+        LocalDate borrowedDate = LocalDate.parse(lblDate.getText());
+        LocalDate returnedDate = borrowedDate.plusDays(7);
 
-        System.out.println(users.getId());
+        System.out.println(borrowedDate);
+        System.out.println(returnedDate);
+    }
+   /* public BranchDTO getBranchByAddress(String address){
+        List<BranchDTO> branches = borrowBO.getAllBranch();
+        BranchDTO branchDTO = new BranchDTO();
+        for (BranchDTO branch : branches) {
+            if (address.equals(branch.getAddress())){
+                branchDTO.setId(branch.getId());
+                branchDTO.setAddress(branch.getAddress());
+                branchDTO.setOpenedDate(branch.getOpenedDate());
+            }
+        }return branchDTO;
+    }*/
+    public BookDTO getBooksById(long id){
+        List<BookDTO> bookDTOS = borrowBO.getAllBook();
+        BookDTO bookDTO = new BookDTO();
+        for (BookDTO dto : bookDTOS) {
+            if (id==dto.getId()){
+                bookDTO.setId(dto.getId());
+                bookDTO.setTitle(dto.getTitle());
+                bookDTO.setAuthor(dto.getAuthor());
+                bookDTO.setBranch(new BranchDTO().toEntity(dto.getBranch()));
+                bookDTO.setGeneration(dto.getGeneration());
+                bookDTO.setAvailabilityStatus(dto.getAvailabilityStatus());
+            }
+        }return bookDTO;
     }
 
     @FXML
