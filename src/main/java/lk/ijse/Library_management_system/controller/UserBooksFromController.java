@@ -10,6 +10,7 @@ import lk.ijse.Library_management_system.bo.custom.BorrowBO;
 import lk.ijse.Library_management_system.bo.custom.impl.BorrowBOImpl;
 import lk.ijse.Library_management_system.dto.BookDTO;
 import lk.ijse.Library_management_system.dto.BranchDTO;
+import lk.ijse.Library_management_system.dto.UserDTO;
 import lk.ijse.Library_management_system.tdm.BookTM;
 
 import java.util.List;
@@ -78,6 +79,7 @@ public class UserBooksFromController {
     private Label lblDate;
     BorrowBO borrowBO = new BorrowBOImpl();
     public void initialize() {
+
         resetAll();
         setCombSearchValues();
         loadAllBooks();
@@ -124,7 +126,9 @@ public class UserBooksFromController {
     }
     @FXML
     void btnBorrowOnAction(ActionEvent event) {
+        UserDTO users= UserSignInFromController.userDTO;
 
+        System.out.println(users.getId());
     }
 
     @FXML

@@ -8,11 +8,18 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.Library_management_system.bo.BOFactory;
+import lk.ijse.Library_management_system.bo.custom.UserBO;
+import lk.ijse.Library_management_system.dao.custom.UserDAO;
+import lk.ijse.Library_management_system.dto.UserDTO;
 
 import javax.swing.text.html.ImageView;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserSignInFromController {
+    public static UserDTO userDTO = new UserDTO();
     @FXML
     private AnchorPane root;
 
@@ -32,6 +39,7 @@ public class UserSignInFromController {
     private Label lablePasswordWarning;
     @FXML
     private Button btnSignUp;
+    UserBO userBO = (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.USER);
     public void initialize(){
         String imagePath = "/assest/image/Hide_Password.png";
         btnToggle.setStyle("-fx-background-image: url('" + imagePath + "'); -fx-background-size: 50% 50%; -fx-background-position: center; -fx-background-repeat: no-repeat;");
@@ -39,12 +47,22 @@ public class UserSignInFromController {
 
     @FXML
     void signInBtnOnAction(ActionEvent event) throws IOException {
-        AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/user_buttonBoard_form.fxml"));
-        Scene scene = new Scene(anchorPane);
-        Stage stage = (Stage) root.getScene().getWindow();
-        stage.setScene(scene);
-        stage.setTitle("User page");
-        stage.centerOnScreen();
+        String name = textUserName.getText();
+        String password = textPassword.getText();
+        List<UserDTO> users = userBO.getAllUser();
+        for (UserDTO user : users) {
+            if (name.equals(user.getName())){
+                if (password.equals(user.getPassword())){
+                    userDTO=user;
+                    AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/user_buttonBoard_form.fxml"));
+                    Scene scene = new Scene(anchorPane);
+                    Stage stage = (Stage) root.getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.setTitle("User page");
+                    stage.centerOnScreen();
+                }
+            }
+        }
     }
 
     @FXML

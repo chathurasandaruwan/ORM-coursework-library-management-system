@@ -34,9 +34,9 @@ public class UserSignUpFromController {
     @FXML
     private Label lblUserNameWarning;
     UserBO userBO = (UserBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.USER);
-
     @FXML
     void btnSignInOnAction(ActionEvent event) throws IOException {
+
         AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/user_sign_in.fxml"));
         Scene scene = new Scene(anchorPane);
 
