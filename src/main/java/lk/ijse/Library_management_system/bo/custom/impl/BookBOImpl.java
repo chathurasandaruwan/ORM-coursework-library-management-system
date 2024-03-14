@@ -1,6 +1,7 @@
 package lk.ijse.Library_management_system.bo.custom.impl;
 
 import lk.ijse.Library_management_system.bo.custom.BookBO;
+import lk.ijse.Library_management_system.dao.DAOFactory;
 import lk.ijse.Library_management_system.dao.custom.BookDAO;
 import lk.ijse.Library_management_system.dao.custom.BranchDAO;
 import lk.ijse.Library_management_system.dao.custom.impl.BookDAOImpl;
@@ -14,8 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BookBOImpl implements BookBO {
-    BranchDAO branchDAO = new BranchDAOImpl();
-    BookDAO bookDAO = new BookDAOImpl();
+    BranchDAO branchDAO = (BranchDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOType.BRANCH);
+    BookDAO bookDAO = (BookDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOType.BOOK);
 
     @Override
     public List<BranchDTO> getAllBranch(){
