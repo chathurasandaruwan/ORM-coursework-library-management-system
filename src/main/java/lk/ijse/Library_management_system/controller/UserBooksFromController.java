@@ -84,6 +84,17 @@ public class UserBooksFromController {
         textSearch.setOnAction((ActionEvent event) -> {
             btnSearch.fire();
         });
+
+        tblBookList.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue) ->{
+            if (newValue != null){
+                lblBranch.setText(newValue.getBranch());
+                lblBookTitle.setText(newValue.getTitle());
+                lblAthorName.setText(newValue.getAuthor());
+                lblGen.setText(newValue.getGeneration());
+                lblBookId.setText(String.valueOf(newValue.getId()));
+                lblStatus.setText(String.valueOf(newValue.getAvailabilityStatus()));
+            }
+        });
     }
     public void setCombSearchValues(){
         CombSearchValues.setItems(FXCollections.observableArrayList("Name", "Branch","All"));
@@ -117,7 +128,9 @@ public class UserBooksFromController {
                 String name = textSearch.getText();
                 for (BookDTO dto : bookDTOS) {
                     if (name.equals(dto.getTitle())) {
+                        tblBookList.getItems().clear();
                         BranchDTO branchDTO = dto.getBranch();
+                        tblBookList.getItems().add(new BookTM(dto.getId(), dto.getTitle(), dto.getAuthor(), dto.getAvailabilityStatus(), dto.getGeneration(), branchDTO.getAddress()));
                         lblBranch.setText(branchDTO.getAddress());
                         lblBookTitle.setText(dto.getTitle());
                         lblAthorName.setText(dto.getAuthor());
@@ -125,19 +138,25 @@ public class UserBooksFromController {
                         lblBookId.setText(String.valueOf(dto.getId()));
                         lblStatus.setText(String.valueOf(dto.getAvailabilityStatus()));
                         lblSearchError.setText("");
+
                     }else {
 //                        new Alert(Alert.AlertType.ERROR,"Can't Find , Please try again !!").show();
-                        lblSearchError.setText("Can't Find , Please try again !!!");
+                        if (lblBookId.getText() == null || lblBookId.getText().isEmpty()) {
+                            lblSearchError.setText("Can't Find, Please try again!!!");
+                        }
                     }
                 }
             } else if (type.equals("Branch")) {
                 tblBookList.getItems().clear();
+                lblSearchError.setOpacity(100);
                 String address = textSearch.getText();
                 for (BookDTO dto : bookDTOS) {
                     BranchDTO branchDTO = dto.getBranch();
                     if (address.equals(branchDTO.getAddress())) {
                         tblBookList.getItems().add(new BookTM(dto.getId(), dto.getTitle(), dto.getAuthor(), dto.getAvailabilityStatus(), dto.getGeneration(), branchDTO.getAddress()));
+                        lblSearchError.setOpacity(0);
                     }else {
+
 //                        new Alert(Alert.AlertType.ERROR,"Can't Find , Please try again !!").show();
                         lblSearchError.setText("Can't Find , Please try again !!!");
                     }
