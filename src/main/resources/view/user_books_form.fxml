@@ -60,7 +60,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="465.0" layoutY="148.0" text="Availabality Status :">
+            <Label fx:id="lblAvSt" layoutX="465.0" layoutY="148.0" text="Availabality Status :">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

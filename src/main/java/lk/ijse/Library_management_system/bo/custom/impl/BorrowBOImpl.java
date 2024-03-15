@@ -35,15 +35,6 @@ public class BorrowBOImpl implements BorrowBO {
         return bookDTOS;
     }
     @Override
-    public List<BranchDTO> getAllBranch(){
-        List<BranchDTO>branchDTOS =new ArrayList<>();
-        List<Branch> branches = branchDAO.getAll();
-        for (Branch branch : branches) {
-            branchDTOS.add(new BranchDTO(branch.getId(),branch.getAddress(),branch.getOpenedDate()));
-        }
-        return branchDTOS;
-    }
-    @Override
     public boolean saveBorrow(BorrowDTO dto){
         Session session =null;
         Transaction transaction=null;

@@ -85,6 +85,9 @@ public class UserBooksFromController {
 
     @FXML
     private Label lblDate;
+
+    @FXML
+    private Label lblAvSt;
     private  UserDTO user= UserSignInFromController.userDTO;
     BorrowBO borrowBO = new BorrowBOImpl();
     public void initialize() {
@@ -98,17 +101,42 @@ public class UserBooksFromController {
         textSearch.setOnAction((ActionEvent event) -> {
             btnSearch.fire();
         });
+        tblBookOnAction();
+        tblBorrowedOnAction();
 
+    }
+    public void tblBookOnAction(){
         tblBookList.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue) ->{
             if (newValue != null){
+                lblAvSt.setOpacity(100);
+                btnBorrow.setDisable(false);
                 lblBranch.setText(newValue.getBranch());
                 lblBookTitle.setText(newValue.getTitle());
                 lblAthorName.setText(newValue.getAuthor());
                 lblGen.setText(newValue.getGeneration());
                 lblBookId.setText(String.valueOf(newValue.getId()));
                 lblStatus.setText(String.valueOf(newValue.getAvailabilityStatus()));
+                btnReturn.setDisable(true);
             }else {
                 resetAll();
+            }
+        });
+    }
+    public void tblBorrowedOnAction(){
+        tblBrrowed.getSelectionModel().selectedItemProperty().addListener((observable,oldValue,newValue1) ->{
+            if (newValue1 != null){
+                btnReturn.setDisable(false);
+                btnBorrow.setDisable(true);
+                long bookId = newValue1.getBid();
+                BookDTO book=getBooksById(bookId);
+                lblBookId.setText(String.valueOf(book.getId()));
+                lblBranch.setText(book.getBranchDTO().getAddress());
+                lblBookTitle.setText(book.getTitle());
+                lblAthorName.setText(book.getAuthor());
+                lblGen.setText(book.getGeneration());
+                lblAvSt.setOpacity(0);
+                lblStatus.setText("");
+
             }
         });
     }
@@ -120,6 +148,7 @@ public class UserBooksFromController {
         lblBookId.setText("");
         lblStatus.setText("");
         tblBookList.getSelectionModel().clearSelection();
+        lblAvSt.setOpacity(100);
     }
     public void setCombSearchValues(){
         CombSearchValues.setItems(FXCollections.observableArrayList("Name", "Branch","All"));
@@ -146,8 +175,6 @@ public class UserBooksFromController {
     void btnBorrowOnAction(ActionEvent event) {
         long bookId = Long.parseLong(lblBookId.getText());
         BookDTO book=getBooksById(bookId);
-        BranchDTO branchDTO =getBranchByAddress(lblBranch.getText());
-        book.setBranchDTO(branchDTO);
         LocalDate borrowedDate = LocalDate.parse(lblDate.getText());
         LocalDate returnedDate = borrowedDate.plusDays(7);
         boolean isSaved= borrowBO.saveBorrow(new BorrowDTO(book,user,borrowedDate,returnedDate));
@@ -156,18 +183,6 @@ public class UserBooksFromController {
             loadAllBooks();
         }
     }
-    public BranchDTO getBranchByAddress(String address){
-        List<BranchDTO> branches = borrowBO.getAllBranch();
-        BranchDTO branchDTO = new BranchDTO();
-        for (BranchDTO branch : branches) {
-            if (address.equals(branch.getAddress())){
-                branchDTO.setId(branch.getId());
-                branchDTO.setAddress(branch.getAddress());
-                branchDTO.setOpenedDate(branch.getOpenedDate());
-            }
-        }return branchDTO;
-    }
-
     public BookDTO getBooksById(long id){
         List<BookDTO> bookDTOS = borrowBO.getAllBook();
         BookDTO bookDTO = new BookDTO();
@@ -176,7 +191,7 @@ public class UserBooksFromController {
                 bookDTO.setId(dto.getId());
                 bookDTO.setTitle(dto.getTitle());
                 bookDTO.setAuthor(dto.getAuthor());
-//                bookDTO.setBranch(new BranchDTO().toEntity(dto.getBranch()));
+                bookDTO.setBranchDTO(dto.getBranchDTO());
 
                 bookDTO.setGeneration(dto.getGeneration());
                 bookDTO.setAvailabilityStatus(dto.getAvailabilityStatus());
@@ -207,6 +222,8 @@ public class UserBooksFromController {
                         lblBookId.setText(String.valueOf(dto.getId()));
                         lblStatus.setText(String.valueOf(dto.getAvailabilityStatus()));
                         lblSearchError.setText("");
+                        btnBorrow.setDisable(false);
+                        btnReturn.setDisable(true);
                     }else {
 //                        new Alert(Alert.AlertType.ERROR,"Can't Find , Please try again !!").show();
                         if (lblBookId.getText() == null || lblBookId.getText().isEmpty()) {
