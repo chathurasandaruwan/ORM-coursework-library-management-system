@@ -1,4 +1,13 @@
 package lk.ijse.Library_management_system.dao;
 
-public interface CrudDAO {
+import java.util.List;
+
+public interface CrudDAO <T> extends SupperDAO {
+    List<T> getAll() ;
+
+    boolean save(T dto) ;
+
+    boolean update(T dto);
+
+    boolean delete(long id);
 }
