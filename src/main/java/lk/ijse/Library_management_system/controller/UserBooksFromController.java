@@ -89,7 +89,7 @@ public class UserBooksFromController {
 
     @FXML
     private Label lblAvSt;
-    private  UserDTO user= UserSignInFromController.userDTO;
+    private  UserDTO user= UserSignInFromController.userDTOS;
     BorrowBO borrowBO = (BorrowBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.BORROW);
     public void initialize() {
 

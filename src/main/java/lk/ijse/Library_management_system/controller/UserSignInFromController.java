@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class UserSignInFromController {
-    public static UserDTO userDTO = new UserDTO();
+    protected static UserDTO userDTOS = new UserDTO();
     @FXML
     private AnchorPane root;
 
@@ -52,17 +52,21 @@ public class UserSignInFromController {
             lableUserNameWarning.setText("");
             if (name.equals(user.getName())){
                 if (password.equals(user.getPassword())){
-                    userDTO=user;
+                    userDTOS=user;
                     AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/user_buttonBoard_form.fxml"));
                     Scene scene = new Scene(anchorPane);
                     Stage stage = (Stage) root.getScene().getWindow();
                     stage.setScene(scene);
                     stage.setTitle("User page");
                     stage.centerOnScreen();
-                }else {
+                }else  {
                     lablePasswordWarning.setText("Wrong user name!! , Please try again !!!");
+                    userDTOS=new UserDTO();
                 }
-            }else {lableUserNameWarning.setText("Wrong user name!! , Please try again !!!");}
+            }else {
+                lableUserNameWarning.setText("Wrong user name!! , Please try again !!!");
+                userDTOS=new UserDTO();
+            }
         }
     }
 
