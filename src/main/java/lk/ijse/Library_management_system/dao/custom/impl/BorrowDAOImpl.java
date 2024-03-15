@@ -11,13 +11,9 @@ public class BorrowDAOImpl implements BorrowDAO {
     @Override
     public boolean save(Borrow entity) {
         Session session =null;
-        Transaction transaction=null;
         session = FactoryConfiguration.getInstance().getSession();
-        transaction = session.beginTransaction();
         session.save(entity);
-        transaction.commit();
-        boolean wasCommitted= transaction.getStatus().equals("ACTIVE")?true:false;
         session.close();
-        return wasCommitted;
+        return true;
     }
 }

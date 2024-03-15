@@ -46,10 +46,10 @@ public class BorrowBOImpl implements BorrowBO {
     }
     @Override
     public boolean saveBorrow(BorrowDTO dto){
-   /*     Session session =null;
+        Session session =null;
         Transaction transaction=null;
         session = FactoryConfiguration.getInstance().getSession();
-        transaction = session.beginTransaction();*/
+        transaction = session.beginTransaction();
         UserDTO userDTO = dto.getUser();
         BookDTO bookDTO = dto.getBook();
 
@@ -63,7 +63,7 @@ public class BorrowBOImpl implements BorrowBO {
             boolean isUpdateBookCount = bookDAO.update(newBooks);
             System.out.println("update book :"+isUpdateBookCount);
             if (isUpdateBookCount){
-//                transaction.commit();
+                transaction.commit();
                 System.out.println("Save and update success !!!");
                 return true;
             }

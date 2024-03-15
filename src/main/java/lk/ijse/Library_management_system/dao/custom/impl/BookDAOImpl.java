@@ -36,9 +36,8 @@ public class BookDAOImpl implements BookDAO {
         transaction = session.beginTransaction();
         session.update(entity);
         transaction.commit();
-        boolean wasCommitted= transaction.getStatus().equals("ACTIVE")?true:false;
         session.close();
-        return wasCommitted;
+        return true;
 
 
     }
