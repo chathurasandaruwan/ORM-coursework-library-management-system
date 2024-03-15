@@ -50,6 +50,7 @@ public class BooksHistoryFromController {
     private void setvaluesFactory() {
         columnBookId.setCellValueFactory(new PropertyValueFactory<>("id"));
         columnTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
+        columnAuthor.setCellValueFactory(new PropertyValueFactory<>("author"));
         columnBorroweDate.setCellValueFactory(new PropertyValueFactory<>("borrowedDate"));
         columnExpDate.setCellValueFactory(new PropertyValueFactory<>("expDate"));
 
