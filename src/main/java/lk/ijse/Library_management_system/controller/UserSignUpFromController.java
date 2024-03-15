@@ -10,7 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.Library_management_system.bo.BOFactory;
 import lk.ijse.Library_management_system.bo.custom.UserBO;
-import lk.ijse.Library_management_system.bo.custom.impl.UserBOImpl;
+import lk.ijse.Library_management_system.controller.util.ValidationController;
 import lk.ijse.Library_management_system.dto.UserDTO;
 
 import java.io.IOException;
@@ -51,20 +51,23 @@ public class UserSignUpFromController {
         String name = textName.getText();
         String email = textEmail.getText();
         String password = textPassword.getText();
-        List<UserDTO>users = userBO.getAllUser();
-        for (UserDTO user : users) {
-            if (name.equals(user.getName())){
-                textName.setStyle("-fx-border-color: red");
-                lblUserNameWarning.setText("This user name already taken !!! , please try again !!");
-                return;
+        boolean isValidate = ValidationController.name(password);
+        if (isValidate) {
+            List<UserDTO> users = userBO.getAllUser();
+            for (UserDTO user : users) {
+                if (name.equals(user.getName())) {
+                    textName.setStyle("-fx-border-color: red");
+                    lblUserNameWarning.setText("This user name already taken !!! , please try again !!");
+                    return;
+                }
             }
-        }
-        lblUserNameWarning.setText("");
-        UserDTO userDTO = new UserDTO(name,email,password);
-        boolean isSaved = userBO.saveUser(userDTO);
-        if (isSaved){
-            new Alert(Alert.AlertType.INFORMATION, "Sign Up Success!! , please Sign IN now !!!").show();
-            btnSignIn.fire();
+            lblUserNameWarning.setText("");
+            UserDTO userDTO = new UserDTO(name, email, password);
+            boolean isSaved = userBO.saveUser(userDTO);
+            if (isSaved) {
+                new Alert(Alert.AlertType.INFORMATION, "Sign Up Success!! , please Sign IN now !!!").show();
+                btnSignIn.fire();
+            }
         }
     }
 
