@@ -184,6 +184,7 @@ public class UserBooksFromController {
                 new Alert(Alert.AlertType.INFORMATION, "SAVE SUCCESS !!!").show();
                 loadAllBooks();
                 loadAllBorrow();
+                resetAll();
             }
         }else {
             new Alert(Alert.AlertType.ERROR, "Out of stock !!!").show();
@@ -216,6 +217,7 @@ public class UserBooksFromController {
                     new Alert(Alert.AlertType.INFORMATION,"RETURN SUCCESS !!!").show();
                     loadAllBooks();
                     loadAllBorrow();
+                    resetAll();
                     break;
                 }
             }
@@ -258,6 +260,7 @@ public class UserBooksFromController {
                     if (address.equals(branchDTO.getAddress())) {
                         tblBookList.getItems().add(new BookTM(dto.getId(), dto.getTitle(), dto.getAuthor(), dto.getAvailabilityStatus(), dto.getGeneration(), branchDTO.getAddress()));
                         lblSearchError.setOpacity(0);
+                        textSearch.setText("");
                     }else {
 
 //                        new Alert(Alert.AlertType.ERROR,"Can't Find , Please try again !!").show();
@@ -267,6 +270,7 @@ public class UserBooksFromController {
                 resetAll();
             } else if (type.equals("All")) {
                 lblSearchError.setText("");
+                textSearch.setText("");
                 loadAllBooks();
                 resetAll();
             }
