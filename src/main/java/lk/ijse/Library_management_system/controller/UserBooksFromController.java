@@ -12,6 +12,7 @@ import lk.ijse.Library_management_system.dto.BorrowDTO;
 import lk.ijse.Library_management_system.dto.BranchDTO;
 import lk.ijse.Library_management_system.dto.UserDTO;
 import lk.ijse.Library_management_system.tdm.BookTM;
+import lk.ijse.Library_management_system.tdm.BorrowedTM;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -19,7 +20,13 @@ import java.util.List;
 public class UserBooksFromController {
 
     @FXML
-    private TableView<?> tblBrrowed;
+    private TableView<BorrowedTM> tblBrrowed;
+
+    @FXML
+    private TableColumn<?, ?> columnBookId;
+
+    @FXML
+    private TableColumn<?, ?> columnBookName;
 
     @FXML
     private TableView<BookTM> tblBookList;
@@ -78,6 +85,7 @@ public class UserBooksFromController {
 
     @FXML
     private Label lblDate;
+    private  UserDTO user= UserSignInFromController.userDTO;
     BorrowBO borrowBO = new BorrowBOImpl();
     public void initialize() {
 
@@ -129,10 +137,13 @@ public class UserBooksFromController {
         columnBranch.setCellValueFactory(new PropertyValueFactory<>("branch"));
 
 
+        columnBookId.setCellValueFactory(new PropertyValueFactory<>("Bid"));
+        columnBookName.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+
     }
     @FXML
     void btnBorrowOnAction(ActionEvent event) {
-        UserDTO user= UserSignInFromController.userDTO;
         long bookId = Long.parseLong(lblBookId.getText());
         BookDTO book=getBooksById(bookId);
         BranchDTO branchDTO =getBranchByAddress(lblBranch.getText());
@@ -236,9 +247,13 @@ public class UserBooksFromController {
         }
     }
     public void loadAllBorrow(){
+        tblBrrowed.getItems().clear();
         List<BorrowDTO> allBorrow = borrowBO.getAllBorrow();
         for (BorrowDTO borrowDTO : allBorrow) {
-            System.out.println(borrowDTO.getUser().getName());
+//            System.out.println(borrowDTO.getUser().getName());
+            if (user.getId()==borrowDTO.getUser().getId()){
+                tblBrrowed.getItems().add(new BorrowedTM(borrowDTO.getBook().getId(),borrowDTO.getBook().getTitle()));
+            }
 
         }
     }
