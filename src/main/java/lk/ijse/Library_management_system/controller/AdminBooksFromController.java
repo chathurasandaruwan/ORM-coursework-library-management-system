@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.Library_management_system.bo.BOFactory;
 import lk.ijse.Library_management_system.bo.custom.BookBO;
+import lk.ijse.Library_management_system.controller.util.ValidationController;
 import lk.ijse.Library_management_system.dto.BookDTO;
 import lk.ijse.Library_management_system.dto.BranchDTO;
 import lk.ijse.Library_management_system.tdm.BookTM;
@@ -154,29 +155,42 @@ public class AdminBooksFromController {
     @FXML
     void btnSaveOnAction(ActionEvent event) {
        String address = combBranch.getValue();
-       BranchDTO branchDTO = getBranchByAddress(address);
        String author = textAuthor.getText();
        int availabilityS = Integer.parseInt(textStatus.getText());
        String gen = textGen.getText();
        String title = textTitle.getText();
+if (combBranch.getValue().isEmpty() || textAuthor.getText().isEmpty() || textStatus.getText().isEmpty() || textGen.getText().isEmpty() || textTitle.getText().isEmpty()) {
+    boolean isValid = ValidationController.address(address);
+    boolean isValid1 = ValidationController.name(author);
+    boolean isValid2 = ValidationController.qty(textStatus.getText());
+    boolean isValid3 = ValidationController.qty(gen);
+    boolean isValid4 = ValidationController.name(title);
+    if (isValid || isValid1 || isValid2 || isValid3 || isValid4) {
+        BranchDTO branchDTO = getBranchByAddress(address);
 //       save book
-       if (btnSave.getText().equals("Save")){
-           boolean isSaved = bookBO.saveBook(new BookDTO(title,author,availabilityS,gen,branchDTO));
-           if (isSaved){
-               new Alert(Alert.AlertType.INFORMATION,"SAVE SUCCESS !!!").show();
-               loadAllBooks();
-               resetAll();
-           }
+        if (btnSave.getText().equals("Save")) {
+            boolean isSaved = bookBO.saveBook(new BookDTO(title, author, availabilityS, gen, branchDTO));
+            if (isSaved) {
+                new Alert(Alert.AlertType.INFORMATION, "SAVE SUCCESS !!!").show();
+                loadAllBooks();
+                resetAll();
+            }
 //           update books
-       }else {
-           long bookId = Long.parseLong(lblBookId.getText());
-           boolean isUpdate = bookBO.updateBook(new BookDTO(bookId,title,author,availabilityS,gen,branchDTO));
-           if (isUpdate){
-               new Alert(Alert.AlertType.INFORMATION,"Update SUCCESS !!!").show();
-               loadAllBooks();
-               resetAll();
-           }
-       }
+        } else {
+            long bookId = Long.parseLong(lblBookId.getText());
+            boolean isUpdate = bookBO.updateBook(new BookDTO(bookId, title, author, availabilityS, gen, branchDTO));
+            if (isUpdate) {
+                new Alert(Alert.AlertType.INFORMATION, "Update SUCCESS !!!").show();
+                loadAllBooks();
+                resetAll();
+            }
+        }
+    } else {
+        new Alert(Alert.AlertType.ERROR, "Some input Wrong !! .please try again !!!").show();
+    }
+}else {
+    new Alert(Alert.AlertType.ERROR, "Some input Null !! .please try again !!!").show();
+}
     }
     public BranchDTO getBranchByAddress(String address){
         List<BranchDTO> branches = bookBO.getAllBranch();
