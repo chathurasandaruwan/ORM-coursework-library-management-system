@@ -33,6 +33,15 @@ public class ValidationController {
             return false;
         }
     }
+    public static boolean id(String id) {
+        Pattern idPattern = Pattern.compile("^[0-9]{1,3}$");
+        boolean matches = idPattern.matcher(id).matches();
+        if (matches) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 
     public static boolean password(String pwd) {

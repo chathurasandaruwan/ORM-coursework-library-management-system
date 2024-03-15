@@ -7,6 +7,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.Library_management_system.bo.BOFactory;
 import lk.ijse.Library_management_system.bo.custom.BranchBO;
 import lk.ijse.Library_management_system.bo.custom.impl.BranchBOImpl;
+import lk.ijse.Library_management_system.controller.util.ValidationController;
 import lk.ijse.Library_management_system.dto.BranchDTO;
 import lk.ijse.Library_management_system.entity.Branch;
 import lk.ijse.Library_management_system.tdm.BranchTM;
@@ -122,25 +123,32 @@ public class AdminBranchFromController {
     void btnSaveOnAction(ActionEvent event) {
         LocalDate opDate = OpenedDayPiker.getValue();
         String address = textAddress.getText();
+        if (textAddress.getText().isEmpty() || textId.getText().isEmpty()) {
+            boolean validate = ValidationController.address(address);
+            boolean validate1 = ValidationController.id(textId.getText());
+
+            if (validate || validate1) {
 //        save branch
-        if ("Save".equals(btnSave.getText())){
-            boolean isSaved = branchBO.saveBranch(new BranchDTO(address,opDate));
-            if (isSaved){
-                new Alert(Alert.AlertType.INFORMATION,"SAVE SUCCESS !!!").show();
-                textAddress.clear();
-                OpenedDayPiker.setValue(null);
-                loadAllBranch();
-            }
-        }
+                if ("Save".equals(btnSave.getText())) {
+                    boolean isSaved = branchBO.saveBranch(new BranchDTO(address, opDate));
+                    if (isSaved) {
+                        new Alert(Alert.AlertType.INFORMATION, "SAVE SUCCESS !!!").show();
+                        textAddress.clear();
+                        OpenedDayPiker.setValue(null);
+                        loadAllBranch();
+                    }
+                }
 //        update branch
-        else {
-            long id = Long.parseLong(textId.getText());
-            boolean isUpdate = branchBO.updateBranch(new BranchDTO(id,address,opDate));
-            if (isUpdate){
-                new Alert(Alert.AlertType.INFORMATION,"UPDATE SUCCESS !!!").show();
-                textAddress.clear();
-                OpenedDayPiker.setValue(null);
-                loadAllBranch();
+                else {
+                    long id = Long.parseLong(textId.getText());
+                    boolean isUpdate = branchBO.updateBranch(new BranchDTO(id, address, opDate));
+                    if (isUpdate) {
+                        new Alert(Alert.AlertType.INFORMATION, "UPDATE SUCCESS !!!").show();
+                        textAddress.clear();
+                        OpenedDayPiker.setValue(null);
+                        loadAllBranch();
+                    }
+                }
             }
         }
     }
