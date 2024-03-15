@@ -65,7 +65,7 @@ public class UserSignInFromController {
                 }else {
                     lablePasswordWarning.setText("Wrong user name!! , Please try again !!!");
                 }
-            }lableUserNameWarning.setText("Wrong user name!! , Please try again !!!");
+            }else {lableUserNameWarning.setText("Wrong user name!! , Please try again !!!");}
         }
     }
 
