@@ -4,14 +4,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import lk.ijse.Library_management_system.bo.BOFactory;
 import lk.ijse.Library_management_system.bo.custom.UserBO;
-import lk.ijse.Library_management_system.bo.custom.impl.UserBOImpl;
 import lk.ijse.Library_management_system.dto.UserDTO;
 
 import java.io.IOException;
@@ -91,12 +92,19 @@ public class UserProfileFromController {
 
     }
     @FXML
-    void btnDeletOnAction(ActionEvent event) {
+    void btnDeletOnAction(ActionEvent event) throws IOException {
         long userId = Long.parseLong(lblUserId.getText());
         boolean isDelete = userBO.deleteUser(userId);
         if (isDelete){
             new Alert(Alert.AlertType.INFORMATION, "DELETE SUCCESSFUL !!!").show();
             resetAll();
+            AnchorPane anchorPane = FXMLLoader.load(getClass().getResource("/view/main_form.fxml"));
+            Scene scene = new Scene(anchorPane);
+
+            Stage stage = (Stage) root.getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("User Sign_in page");
+            stage.centerOnScreen();
         }
     }
 
