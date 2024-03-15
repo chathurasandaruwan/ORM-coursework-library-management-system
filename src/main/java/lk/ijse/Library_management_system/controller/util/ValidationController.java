@@ -14,6 +14,16 @@ public class ValidationController {
             return false;
         }
     }
+    public static boolean email(String name) {
+
+        Pattern idPattern = Pattern.compile("^[A-z\\s][@]{3,15}$");
+        boolean matches = idPattern.matcher(name).matches();
+        if (matches) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public static boolean address(String name) {
         Pattern idPattern = Pattern.compile("^[A-Z][a-zA-Z0-9-_]{4,32}$");
@@ -42,10 +52,8 @@ public class ValidationController {
             return false;
         }
     }
-
-
     public static boolean password(String pwd) {
-        Pattern idPattern = Pattern.compile("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$");
+        Pattern idPattern = Pattern.compile("^(?=[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$");
         boolean matches = idPattern.matcher(pwd).matches();
         if (matches) {
             return true;
@@ -53,14 +61,5 @@ public class ValidationController {
             return false;
         }
 
-    }
-    public static boolean userName(String name) {
-        Pattern idPattern = Pattern.compile("^[a-zA-Z][a-zA-Z0-9-_]{4,32}$");
-        boolean matches = idPattern.matcher(name).matches();
-        if (matches) {
-            return true;
-        } else {
-            return false;
-        }
     }
 }

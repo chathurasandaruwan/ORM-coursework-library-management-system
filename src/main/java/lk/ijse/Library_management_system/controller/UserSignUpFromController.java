@@ -51,8 +51,10 @@ public class UserSignUpFromController {
         String name = textName.getText();
         String email = textEmail.getText();
         String password = textPassword.getText();
-        boolean isValidate = ValidationController.name(password);
-        if (isValidate) {
+        boolean isValidate = ValidationController.password(password);
+        boolean isValidate1 = ValidationController.email(email);
+
+        if (isValidate || isValidate1) {
             List<UserDTO> users = userBO.getAllUser();
             for (UserDTO user : users) {
                 if (name.equals(user.getName())) {
@@ -68,6 +70,8 @@ public class UserSignUpFromController {
                 new Alert(Alert.AlertType.INFORMATION, "Sign Up Success!! , please Sign IN now !!!").show();
                 btnSignIn.fire();
             }
+        }else {
+            new Alert(Alert.AlertType.ERROR, "Invalid Password OR EMAIL  !!!").show();
         }
     }
 
