@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BorrowBOImpl implements BorrowBO {
-    BorrowDAO borrowDAO = new BorrowDAOImpl();
+    BorrowDAO borrowDAO = (BorrowDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOType.BORROW);
     BookDAO bookDAO = (BookDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOType.BOOK);
     @Override
     public List<BookDTO> getAllBook(){

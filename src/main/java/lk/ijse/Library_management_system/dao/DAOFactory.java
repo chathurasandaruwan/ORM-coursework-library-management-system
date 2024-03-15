@@ -1,6 +1,7 @@
 package lk.ijse.Library_management_system.dao;
 
 import lk.ijse.Library_management_system.dao.custom.impl.BookDAOImpl;
+import lk.ijse.Library_management_system.dao.custom.impl.BorrowDAOImpl;
 import lk.ijse.Library_management_system.dao.custom.impl.BranchDAOImpl;
 import lk.ijse.Library_management_system.dao.custom.impl.UserDAOImpl;
 
@@ -13,7 +14,7 @@ public class DAOFactory {
         return daoFactory == null ? daoFactory = new DAOFactory() : daoFactory;
     }
     public enum DAOType{
-        BOOK,BRANCH,USER
+        BOOK,BRANCH,USER,BORROW
     }
     public SupperDAO getDAO(DAOType daoType){
         switch (daoType){
@@ -23,6 +24,8 @@ public class DAOFactory {
                 return new UserDAOImpl();
             case BRANCH:
                 return new BranchDAOImpl();
+            case BORROW:
+                return new BorrowDAOImpl();
             default:
                 return null;
         }

@@ -1,6 +1,7 @@
 package lk.ijse.Library_management_system.bo.custom.impl;
 
 import lk.ijse.Library_management_system.bo.custom.BookHistoryBO;
+import lk.ijse.Library_management_system.dao.DAOFactory;
 import lk.ijse.Library_management_system.dao.custom.BorrowDAO;
 import lk.ijse.Library_management_system.dao.custom.impl.BorrowDAOImpl;
 import lk.ijse.Library_management_system.dto.BorrowDTO;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BookHistoryBOImpl implements BookHistoryBO {
-    BorrowDAO borrowDAO = new BorrowDAOImpl();
+    BorrowDAO borrowDAO = (BorrowDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOType.BORROW);
     @Override
     public List<BorrowDTO> getAllBorrow(){
         List<BorrowDTO>borrowDTOS =new ArrayList<>();
