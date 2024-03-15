@@ -13,4 +13,6 @@ public interface BorrowBO extends SupperBO {
     boolean saveBorrow(BorrowDTO dto);
 
     List<BorrowDTO> getAllBorrow();
+
+    boolean returnBook(long id);
 }

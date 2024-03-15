@@ -179,7 +179,7 @@ public class UserBooksFromController {
         LocalDate returnedDate = borrowedDate.plusDays(7);
         boolean isSaved= borrowBO.saveBorrow(new BorrowDTO(book,user,borrowedDate,returnedDate));
         if (isSaved){
-            new Alert(Alert.AlertType.INFORMATION,"SAVE SUCCESS").show();
+            new Alert(Alert.AlertType.INFORMATION,"SAVE SUCCESS !!!").show();
             loadAllBooks();
         }
     }
@@ -201,7 +201,17 @@ public class UserBooksFromController {
 
     @FXML
     void btnReturnOnAction(ActionEvent event) {
-
+        long bookId = Long.parseLong(lblBookId.getText());
+        List<BorrowDTO> allBorrow = borrowBO.getAllBorrow();
+        for (BorrowDTO dto : allBorrow) {
+            if (bookId==dto.getBook().getId()){
+                boolean isReturned = borrowBO.returnBook(dto.getId());
+                if (isReturned){
+                    new Alert(Alert.AlertType.INFORMATION,"RETURN SUCCESS !!!").show();
+                    loadAllBooks();
+                }
+            }
+        }
     }
     @FXML
     void btnSearchOnAction(ActionEvent event) {

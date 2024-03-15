@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BorrowDTO {
-    private int id;
+    private long id;
     private BookDTO book;
     private UserDTO user;
     private LocalDate borrowedDate;

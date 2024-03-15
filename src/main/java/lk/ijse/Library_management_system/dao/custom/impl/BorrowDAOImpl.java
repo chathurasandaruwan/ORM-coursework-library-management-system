@@ -4,6 +4,7 @@ import lk.ijse.Library_management_system.config.FactoryConfiguration;
 import lk.ijse.Library_management_system.dao.custom.BorrowDAO;
 import lk.ijse.Library_management_system.entity.Borrow;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.util.List;
@@ -24,5 +25,15 @@ public class BorrowDAOImpl implements BorrowDAO {
         List<Borrow>  borrows= query.list();
         session.close();
         return borrows;
+    }
+    @Override
+    public boolean delete(long id){
+        Session session =FactoryConfiguration.getInstance().getSession();
+//        Transaction transaction = session.beginTransaction();
+        Borrow borrow = session.get(Borrow.class,id);
+        session.delete(borrow);
+//        transaction.commit();
+        session.close();
+        return true;
     }
 }

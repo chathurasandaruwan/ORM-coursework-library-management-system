@@ -17,7 +17,7 @@ import javax.persistence.*;
 public class Borrow {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @Column(name = "borrowed_date")
     private LocalDate borrowedDate;

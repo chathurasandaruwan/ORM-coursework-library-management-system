@@ -10,4 +10,6 @@ public interface BorrowDAO extends SupperDAO {
     boolean save(Borrow entity);
 
     List<Borrow> getAll();
+
+    boolean delete(long id);
 }

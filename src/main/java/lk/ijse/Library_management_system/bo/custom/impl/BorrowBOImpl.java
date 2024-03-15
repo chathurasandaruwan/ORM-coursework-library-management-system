@@ -10,7 +10,6 @@ import lk.ijse.Library_management_system.dao.custom.impl.BorrowDAOImpl;
 import lk.ijse.Library_management_system.dto.BookDTO;
 import lk.ijse.Library_management_system.dto.BorrowDTO;
 import lk.ijse.Library_management_system.dto.BranchDTO;
-import lk.ijse.Library_management_system.dto.UserDTO;
 import lk.ijse.Library_management_system.entity.Book;
 import lk.ijse.Library_management_system.entity.Borrow;
 import lk.ijse.Library_management_system.entity.Branch;
@@ -40,10 +39,10 @@ public class BorrowBOImpl implements BorrowBO {
         Transaction transaction=null;
         session = FactoryConfiguration.getInstance().getSession();
         transaction = session.beginTransaction();
-        UserDTO userDTO = dto.getUser();
-        BookDTO bookDTO = dto.getBook();
+        /*UserDTO userDTO = dto.getUser();
+        BookDTO bookDTO = dto.getBook();*/
 
-        boolean isBorrowedSaved = borrowDAO.save(new Borrow(dto.getBorrowedDate(),dto.getReturningDate(),userDTO.toEntity(),bookDTO.toEntity()));
+        boolean isBorrowedSaved = borrowDAO.save(new Borrow(dto.getBorrowedDate(),dto.getReturningDate(),dto.getUser().toEntity(),dto.getBook().toEntity()));
         System.out.println("borrow : "+isBorrowedSaved);
         if (isBorrowedSaved){
             int newBookCount= dto.getBook().getAvailabilityStatus()-1;
@@ -67,5 +66,15 @@ public class BorrowBOImpl implements BorrowBO {
             borrowDTOS.add(new BorrowDTO(borrow.getId(),borrow.getBook().toDTO(),borrow.getUser().toDTO(),borrow.getBorrowedDate(),borrow.getReturningDate()));
         }
         return borrowDTOS;
+    }
+    @Override
+    public boolean returnBook(long id){
+        Session session =null;
+        Transaction transaction=null;
+        session = FactoryConfiguration.getInstance().getSession();
+        transaction = session.beginTransaction();
+        boolean isReturned = borrowDAO.delete(id);
+        transaction.commit();
+        return true;
     }
 }
