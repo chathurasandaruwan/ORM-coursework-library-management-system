@@ -3,7 +3,6 @@ package lk.ijse.Library_management_system.dao.custom.impl;
 import lk.ijse.Library_management_system.config.FactoryConfiguration;
 import lk.ijse.Library_management_system.dao.custom.BookDAO;
 import lk.ijse.Library_management_system.entity.Book;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;

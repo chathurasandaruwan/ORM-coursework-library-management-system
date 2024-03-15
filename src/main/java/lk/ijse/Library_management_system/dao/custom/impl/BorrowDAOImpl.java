@@ -18,6 +18,12 @@ public class BorrowDAOImpl implements BorrowDAO {
         session.close();
         return true;
     }
+
+    @Override
+    public boolean update(Borrow dto) {
+        return false;
+    }
+
     @Override
     public List<Borrow> getAll(){
         Session session = FactoryConfiguration.getInstance().getSession();
