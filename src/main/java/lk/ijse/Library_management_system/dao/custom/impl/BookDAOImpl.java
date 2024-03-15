@@ -3,6 +3,7 @@ package lk.ijse.Library_management_system.dao.custom.impl;
 import lk.ijse.Library_management_system.config.FactoryConfiguration;
 import lk.ijse.Library_management_system.dao.custom.BookDAO;
 import lk.ijse.Library_management_system.entity.Book;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -29,12 +30,17 @@ public class BookDAOImpl implements BookDAO {
     }
     @Override
     public boolean update(Book entity){
-        Session session =FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
+        Session session =null;
+        Transaction transaction=null;
+        session =FactoryConfiguration.getInstance().getSession();
+        transaction = session.beginTransaction();
         session.update(entity);
         transaction.commit();
+        boolean wasCommitted= transaction.getStatus().equals("ACTIVE")?true:false;
         session.close();
-        return  true;
+        return wasCommitted;
+
+
     }
     @Override
     public boolean delete(long id){

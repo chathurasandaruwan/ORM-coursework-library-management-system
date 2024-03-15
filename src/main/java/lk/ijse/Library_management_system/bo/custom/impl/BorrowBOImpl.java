@@ -46,20 +46,25 @@ public class BorrowBOImpl implements BorrowBO {
     }
     @Override
     public boolean saveBorrow(BorrowDTO dto){
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
+   /*     Session session =null;
+        Transaction transaction=null;
+        session = FactoryConfiguration.getInstance().getSession();
+        transaction = session.beginTransaction();*/
         UserDTO userDTO = dto.getUser();
         BookDTO bookDTO = dto.getBook();
 
         boolean isBorrowedSaved = borrowDAO.save(new Borrow(dto.getBorrowedDate(),dto.getReturningDate(),userDTO.toEntity(),bookDTO.toEntity()));
+        System.out.println("borrow : "+isBorrowedSaved);
         if (isBorrowedSaved){
             int newBookCount= dto.getBook().getAvailabilityStatus()-1;
             Book newBooks=dto.getBook().toEntity();
             newBooks.setAvailabilityStatus(newBookCount);
 
             boolean isUpdateBookCount = bookDAO.update(newBooks);
+            System.out.println("update book :"+isUpdateBookCount);
             if (isUpdateBookCount){
-                transaction.commit();
+//                transaction.commit();
+                System.out.println("Save and update success !!!");
                 return true;
             }
         }
