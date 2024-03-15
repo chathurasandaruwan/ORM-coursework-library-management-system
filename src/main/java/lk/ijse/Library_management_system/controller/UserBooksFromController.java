@@ -142,7 +142,8 @@ public class UserBooksFromController {
         LocalDate returnedDate = borrowedDate.plusDays(7);
         boolean isSaved= borrowBO.saveBorrow(new BorrowDTO(book,user,borrowedDate,returnedDate));
         if (isSaved){
-            System.out.println("Save Unaaaa");
+            new Alert(Alert.AlertType.INFORMATION,"SAVE SUCCESS").show();
+            loadAllBooks();
         }
     }
     public BranchDTO getBranchByAddress(String address){

@@ -1,5 +1,6 @@
 package lk.ijse.Library_management_system.bo.custom.impl;
 
+import javafx.scene.control.Alert;
 import lk.ijse.Library_management_system.bo.custom.BorrowBO;
 import lk.ijse.Library_management_system.config.FactoryConfiguration;
 import lk.ijse.Library_management_system.dao.DAOFactory;
@@ -64,7 +65,6 @@ public class BorrowBOImpl implements BorrowBO {
             System.out.println("update book :"+isUpdateBookCount);
             if (isUpdateBookCount){
                 transaction.commit();
-                System.out.println("Save and update success !!!");
                 return true;
             }
         }
