@@ -1,6 +1,7 @@
 package lk.ijse.Library_management_system.bo;
 
 import lk.ijse.Library_management_system.bo.custom.impl.BookBOImpl;
+import lk.ijse.Library_management_system.bo.custom.impl.BorrowBOImpl;
 import lk.ijse.Library_management_system.bo.custom.impl.BranchBOImpl;
 import lk.ijse.Library_management_system.bo.custom.impl.UserBOImpl;
 
@@ -14,7 +15,7 @@ public class BOFactory {
         return boFactory == null ? boFactory = new BOFactory() : boFactory;
     }
     public enum BOType{
-        BOOK,BRANCH,USER
+        BOOK,BRANCH,USER,BORROW
     }
     public SupperBO getBO(BOType boType){
         switch (boType){
@@ -24,6 +25,8 @@ public class BOFactory {
                 return new UserBOImpl();
             case BRANCH:
                 return new BranchBOImpl();
+            case BORROW:
+                return new BorrowBOImpl();
             default:
                 return null;
 

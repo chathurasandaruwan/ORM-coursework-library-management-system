@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lk.ijse.Library_management_system.bo.BOFactory;
 import lk.ijse.Library_management_system.bo.custom.BorrowBO;
 import lk.ijse.Library_management_system.bo.custom.impl.BorrowBOImpl;
 import lk.ijse.Library_management_system.dto.BookDTO;
@@ -16,6 +17,7 @@ import lk.ijse.Library_management_system.tdm.BookHisTM;
 import lk.ijse.Library_management_system.tdm.BookTM;
 import lk.ijse.Library_management_system.tdm.BorrowedTM;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class BooksHistoryFromController {
@@ -41,10 +43,11 @@ public class BooksHistoryFromController {
     private TableColumn<?, ?> columnExpDate;
 
     private UserDTO user= UserSignInFromController.userDTO;
-    BorrowBO borrowBO = new BorrowBOImpl();
+    BorrowBO borrowBO = (BorrowBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.BORROW);
     public void initialize() {
         loadAllBooks();
         setvaluesFactory();
+        lblDate.setText(String.valueOf(LocalDate.now()));
     }
 
     private void setvaluesFactory() {
@@ -60,6 +63,7 @@ public class BooksHistoryFromController {
         List<BorrowDTO> allBorrow = borrowBO.getAllBorrow();
         for (BorrowDTO borrowDTO : allBorrow) {
             if (user.getId()==borrowDTO.getUser().getId()){
+//                tblView.setStyle("-fx-text-fill: red;");
                 BookDTO dto = borrowDTO.getBook();
                 tblView.getItems().add(new BookHisTM(dto.getId(),dto.getTitle(),dto.getAuthor(),borrowDTO.getBorrowedDate(),borrowDTO.getReturningDate()));
             }

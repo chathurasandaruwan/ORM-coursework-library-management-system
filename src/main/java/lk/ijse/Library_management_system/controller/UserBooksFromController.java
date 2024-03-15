@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lk.ijse.Library_management_system.bo.BOFactory;
 import lk.ijse.Library_management_system.bo.custom.BorrowBO;
 import lk.ijse.Library_management_system.bo.custom.impl.BorrowBOImpl;
 import lk.ijse.Library_management_system.dto.BookDTO;
@@ -89,7 +90,7 @@ public class UserBooksFromController {
     @FXML
     private Label lblAvSt;
     private  UserDTO user= UserSignInFromController.userDTO;
-    BorrowBO borrowBO = new BorrowBOImpl();
+    BorrowBO borrowBO = (BorrowBO) BOFactory.getBoFactory().getBO(BOFactory.BOType.BORROW);
     public void initialize() {
 
         resetAll();

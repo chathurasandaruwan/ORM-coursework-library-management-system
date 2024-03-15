@@ -7,7 +7,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.Library_management_system.bo.BOFactory;
 import lk.ijse.Library_management_system.bo.custom.BookBO;
-import lk.ijse.Library_management_system.bo.custom.impl.BookBOImpl;
 import lk.ijse.Library_management_system.dto.BookDTO;
 import lk.ijse.Library_management_system.dto.BranchDTO;
 import lk.ijse.Library_management_system.tdm.BookTM;
