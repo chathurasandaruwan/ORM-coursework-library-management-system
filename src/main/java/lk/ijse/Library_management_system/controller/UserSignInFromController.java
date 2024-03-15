@@ -51,6 +51,8 @@ public class UserSignInFromController {
         String password = textPassword.getText();
         List<UserDTO> users = userBO.getAllUser();
         for (UserDTO user : users) {
+            lablePasswordWarning.setText("");
+            lableUserNameWarning.setText("");
             if (name.equals(user.getName())){
                 if (password.equals(user.getPassword())){
                     userDTO=user;
@@ -60,8 +62,10 @@ public class UserSignInFromController {
                     stage.setScene(scene);
                     stage.setTitle("User page");
                     stage.centerOnScreen();
+                }else {
+                    lablePasswordWarning.setText("Wrong user name!! , Please try again !!!");
                 }
-            }
+            }lableUserNameWarning.setText("Wrong user name!! , Please try again !!!");
         }
     }
 
