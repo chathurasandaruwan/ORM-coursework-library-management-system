@@ -3,7 +3,7 @@ import lk.ijse.Library_management_system.dto.BookDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,8 +13,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Cacheable
-@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name = "Book")
 public class Book {
     @Id
@@ -37,7 +35,7 @@ public class Book {
     @JoinColumn(name = "branch_id")
     private Branch branch;
 
-    @OneToMany(mappedBy = "book")
+    @OneToMany(mappedBy = "book" ,targetEntity = Borrow.class,cascade = CascadeType.ALL)
     private List<Borrow> borrows = new ArrayList<>();
 
     public Book(long id, String title, String author, int availabilityStatus, String generation, Branch branch) {

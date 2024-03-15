@@ -177,10 +177,15 @@ public class UserBooksFromController {
         BookDTO book=getBooksById(bookId);
         LocalDate borrowedDate = LocalDate.parse(lblDate.getText());
         LocalDate returnedDate = borrowedDate.plusDays(7);
-        boolean isSaved= borrowBO.saveBorrow(new BorrowDTO(book,user,borrowedDate,returnedDate));
-        if (isSaved){
-            new Alert(Alert.AlertType.INFORMATION,"SAVE SUCCESS !!!").show();
-            loadAllBooks();
+        if (book.getAvailabilityStatus()>0) {
+            boolean isSaved = borrowBO.saveBorrow(new BorrowDTO(book, user, borrowedDate, returnedDate));
+            if (isSaved) {
+                new Alert(Alert.AlertType.INFORMATION, "SAVE SUCCESS !!!").show();
+                loadAllBooks();
+                loadAllBorrow();
+            }
+        }else {
+            new Alert(Alert.AlertType.ERROR, "Out of stock !!!").show();
         }
     }
     public BookDTO getBooksById(long id){
@@ -205,10 +210,12 @@ public class UserBooksFromController {
         List<BorrowDTO> allBorrow = borrowBO.getAllBorrow();
         for (BorrowDTO dto : allBorrow) {
             if (bookId==dto.getBook().getId()){
-                boolean isReturned = borrowBO.returnBook(dto.getId());
+                boolean isReturned = borrowBO.returnBook(dto.getId(),dto.getBook());
                 if (isReturned){
                     new Alert(Alert.AlertType.INFORMATION,"RETURN SUCCESS !!!").show();
                     loadAllBooks();
+                    loadAllBorrow();
+                    break;
                 }
             }
         }

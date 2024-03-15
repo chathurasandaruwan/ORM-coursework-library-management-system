@@ -30,7 +30,7 @@ public class User {
     @Column(name = "user_password")
     private String password;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user",targetEntity = Borrow.class,cascade = CascadeType.ALL)
     private List<Borrow> borrows = new ArrayList<>();
 
     public User(long id, String name, String email, String password) {

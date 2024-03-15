@@ -28,11 +28,13 @@ public class BorrowDAOImpl implements BorrowDAO {
     }
     @Override
     public boolean delete(long id){
-        Session session =FactoryConfiguration.getInstance().getSession();
-//        Transaction transaction = session.beginTransaction();
+
+        Session session =null;
+        session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
         Borrow borrow = session.get(Borrow.class,id);
-        session.delete(borrow);
-//        transaction.commit();
+        session.remove(borrow);
+        transaction.commit();
         session.close();
         return true;
     }

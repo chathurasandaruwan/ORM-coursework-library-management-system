@@ -68,13 +68,25 @@ public class BorrowBOImpl implements BorrowBO {
         return borrowDTOS;
     }
     @Override
-    public boolean returnBook(long id){
+    public boolean returnBook(long id, BookDTO dto){
         Session session =null;
         Transaction transaction=null;
         session = FactoryConfiguration.getInstance().getSession();
         transaction = session.beginTransaction();
         boolean isReturned = borrowDAO.delete(id);
-        transaction.commit();
-        return true;
+        if (isReturned) {
+            int newBookCount = dto.getAvailabilityStatus() + 1;
+            Book newBooks = dto.toEntity();
+            newBooks.setAvailabilityStatus(newBookCount);
+
+            boolean isUpdateBookCount = bookDAO.update(newBooks);
+            System.out.println("update book :" + isUpdateBookCount);
+            if (isUpdateBookCount) {
+                transaction.commit();
+                return true;
+            } else {
+                return false;
+            }
+        }return true;
     }
 }
