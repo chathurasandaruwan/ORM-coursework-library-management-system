@@ -1,6 +1,5 @@
 package lk.ijse.Library_management_system.bo.custom.impl;
 
-import javafx.scene.control.Alert;
 import lk.ijse.Library_management_system.bo.custom.BorrowBO;
 import lk.ijse.Library_management_system.config.FactoryConfiguration;
 import lk.ijse.Library_management_system.dao.DAOFactory;
@@ -15,7 +14,6 @@ import lk.ijse.Library_management_system.dto.UserDTO;
 import lk.ijse.Library_management_system.entity.Book;
 import lk.ijse.Library_management_system.entity.Borrow;
 import lk.ijse.Library_management_system.entity.Branch;
-import lk.ijse.Library_management_system.entity.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -69,5 +67,14 @@ public class BorrowBOImpl implements BorrowBO {
             }
         }
         return false;
+    }
+    @Override
+    public List<BorrowDTO> getAllBorrow(){
+        List<BorrowDTO>borrowDTOS =new ArrayList<>();
+        List<Borrow> borrows = borrowDAO.getAll();
+        for (Borrow borrow : borrows) {
+            borrowDTOS.add(new BorrowDTO(borrow.getId(),borrow.getBook().toDTO(),borrow.getUser().toDTO(),borrow.getBorrowedDate(),borrow.getReturningDate()));
+        }
+        return borrowDTOS;
     }
 }

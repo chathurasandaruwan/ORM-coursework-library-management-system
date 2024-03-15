@@ -45,4 +45,7 @@ public class User {
         this.email = email;
         this.password = password;
     }
+    public UserDTO toDTO(){
+        return new UserDTO(id,name,email,password);
+    }
 }

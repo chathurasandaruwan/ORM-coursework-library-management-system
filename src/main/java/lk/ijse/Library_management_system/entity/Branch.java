@@ -1,6 +1,7 @@
 package lk.ijse.Library_management_system.entity;
 
 
+import lk.ijse.Library_management_system.dto.BranchDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -39,5 +40,8 @@ public class Branch {
         this.id = id;
         this.address = address;
         this.openedDate = openedDate;
+    }
+    public BranchDTO toDTO(){
+        return new BranchDTO(id,address,openedDate);
     }
 }

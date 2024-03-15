@@ -1,4 +1,5 @@
 package lk.ijse.Library_management_system.entity;
+import lk.ijse.Library_management_system.dto.BookDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -54,5 +55,8 @@ public class Book {
         this.availabilityStatus = availabilityStatus;
         this.generation = generation;
         this.branch = branch;
+    }
+    public BookDTO toDTO(){
+       return new BookDTO(id,title,author,availabilityStatus,generation,branch.toDTO());
     }
 }

@@ -17,6 +17,7 @@ public class BorrowDAOImpl implements BorrowDAO {
         session.close();
         return true;
     }
+    @Override
     public List<Borrow> getAll(){
         Session session = FactoryConfiguration.getInstance().getSession();
         Query query = session.createQuery("SELECT a FROM Borrow a", Borrow.class);

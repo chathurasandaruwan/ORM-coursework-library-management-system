@@ -13,4 +13,6 @@ public interface BorrowBO extends SupperBO {
     List<BranchDTO> getAllBranch();
 
     boolean saveBorrow(BorrowDTO dto);
+
+    List<BorrowDTO> getAllBorrow();
 }

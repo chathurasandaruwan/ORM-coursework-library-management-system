@@ -5,8 +5,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import lk.ijse.Library_management_system.bo.BOFactory;
-import lk.ijse.Library_management_system.bo.custom.BookBO;
 import lk.ijse.Library_management_system.bo.custom.BorrowBO;
 import lk.ijse.Library_management_system.bo.custom.impl.BorrowBOImpl;
 import lk.ijse.Library_management_system.dto.BookDTO;
@@ -88,6 +86,7 @@ public class UserBooksFromController {
         loadAllBooks();
         setvaluesFactory();
         setDate();
+        loadAllBorrow();
         textSearch.setOnAction((ActionEvent event) -> {
             btnSearch.fire();
         });
@@ -234,6 +233,13 @@ public class UserBooksFromController {
         for (BookDTO dto : bookDTOS) {
             BranchDTO branchDTO = dto.getBranchDTO();
             tblBookList.getItems().add(new BookTM(dto.getId(),dto.getTitle(),dto.getAuthor(),dto.getAvailabilityStatus(),dto.getGeneration(),branchDTO.getAddress()));
+        }
+    }
+    public void loadAllBorrow(){
+        List<BorrowDTO> allBorrow = borrowBO.getAllBorrow();
+        for (BorrowDTO borrowDTO : allBorrow) {
+            System.out.println(borrowDTO.getUser().getName());
+
         }
     }
 
